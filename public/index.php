@@ -19,6 +19,9 @@ $router->add('',['controller'=> 'LoginController', 'method' => 'isWorking']);
 // login route runs the login method
 $router->add('login',['controller'=> 'LoginController', 'method' => 'isAlsoWorking']);
 
+
+
+
 /*
 // Check the table is accepting new routes
 // The route is the key for the array

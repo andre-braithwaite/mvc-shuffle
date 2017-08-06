@@ -25,6 +25,7 @@ class Router {
 
     // Method to take url from the query string and match this to a route in the routing table
     function match($url) {
+        /*
         foreach($this->routes as $route => $params) {
             if ($url == $route) {
                 $this->params = $params;
@@ -32,6 +33,26 @@ class Router {
             }
         }
         return false;
+        */
+
+        // Match to url format /controller/method
+        $regex = "/^(?P<controller>[a-z-]+)\/(?P<method>[a-z-]+)$/";
+
+        if (preg_match($regex, $url, $matches)){
+
+            $params = [];
+
+            foreach($matches as $key => $match) {
+                if(is_string($key)) {
+                    $params[$key] = $match;
+                }
+            }
+
+            $this->params = $params;
+            return true;
+        }
+
+
     }
 
     // Method to get currently matched parameters
