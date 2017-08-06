@@ -1,6 +1,6 @@
 <?php
 
-// Decides which controller and action to run based on the url
+// Decides which controller and action to run based on the url query string
 // Translate url into a class and a method to use
 
 

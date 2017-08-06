@@ -1,9 +1,7 @@
 <?php
 
-/* Route comes in through the url and is matched with the correct method using the routing table */
-
-// Front Controller.
-// Every request will go through here.
+// Front Controller, every request goes through here.
+/* Route comes in through the url query string and is matched with the correct method using the routing table */
 
 //echo 'URL Requested = ' . $_SERVER['QUERY_STRING'];
 

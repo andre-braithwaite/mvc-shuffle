@@ -3,7 +3,7 @@
 class LoginController {
 
     function isWorking() {
-        echo 'LoginController Homepage is working!';
+        echo 'LoginController Homepage method is working!';
     }
 
     function isAlsoWorking() {
