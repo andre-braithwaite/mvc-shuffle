@@ -36,6 +36,7 @@ class Router {
         */
 
         // Match to url format /controller/method
+        // Letters and dashes allowed
         $regex = "/^(?P<controller>[a-z-]+)\/(?P<method>[a-z-]+)$/";
 
         if (preg_match($regex, $url, $matches)){
