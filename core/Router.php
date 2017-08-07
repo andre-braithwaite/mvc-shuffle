@@ -68,6 +68,8 @@ class Router {
     // Execute the routed method
     function dispatch($url) {
 
+        $url = $this->removeQueryParams($url);
+
         //echo 'Dispatching route!';
         if ($this->match($url)) {
             $controller = $this->params['controller'];
@@ -104,6 +106,21 @@ class Router {
     //  Convert a string with dashes to Camel case
     function convertToCamel($str) {
         return lcfirst($this->convertToStudly($str));
+    }
+
+    // Remove query string parameters for routing
+    function removeQueryParams($url) {
+
+        if($url != '') {
+            $items = explode('&', $url, 2);
+
+            if(strpos($items[0], '=') === false) {
+                $url = $items[0];
+            } else {
+                $url = '';
+            }
+        }
+        return $url;
     }
 
 
