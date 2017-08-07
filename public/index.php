@@ -5,8 +5,18 @@
 
 //echo 'URL Requested = ' . $_SERVER['QUERY_STRING'];
 
+function requireClasses($src) {
+
+    foreach (glob($src) as $filename) {
+        require $filename;
+    }
+}
+
 require '../core/Router.php';
-requireClasses("../controllers/*.php");
+require '../app/controllers/LoginController.php';
+
+// Make sure all controllers are loaded
+//requireClasses("../app/controllers/*.php");
 
 // Require all my Controller Classes
 
@@ -33,6 +43,7 @@ var_dump($router->getRoutes());
 echo '</pre>';
 */
 
+/*
 // Matching the requested route
 $url = $_SERVER['QUERY_STRING'];
 
@@ -43,12 +54,8 @@ if ($router->match($url)) {
 } else {
     echo 'No route found for the URL: ' . $url;
 }
+*/
 
-
-function requireClasses($src) {
-
-    foreach (glob($src) as $filename) {
-        require $filename;
-    }
-}
+$url = $_SERVER['QUERY_STRING'];
+$router->dispatch($url);
 

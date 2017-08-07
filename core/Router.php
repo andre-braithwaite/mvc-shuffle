@@ -64,6 +64,7 @@ class Router {
     // Execute the routed method
     function dispatch($url) {
 
+        //echo 'Dispatching route!';
         if ($this->match($url)) {
             $controller = $this->params['controller'];
             $controller = $this->convertToStudly($controller);
@@ -77,13 +78,16 @@ class Router {
                 if(is_callable([$controller_obj, $method])) {
                     $controller_obj->$method();
                 } else {
-                    echo "Method $method in controller $controller was not found";
+                    echo "Method '$method' was not found in $controller";
                 }
             } else {
-                "Controller class $controller was not found";
+                echo "Class '$controller' was not found";
             }
         } else {
-            echo 'Route was not matched';
+            echo 'Route was not matched!';
+            echo '<br>';
+            echo "Routes must be in the format 'controller/method'";
+
         }
     }
 
