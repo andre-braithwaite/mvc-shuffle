@@ -13,10 +13,9 @@ function requireClasses($src) {
 }
 
 require '../core/Router.php';
-require '../app/controllers/LoginController.php';
 
 // Make sure all controllers are loaded
-//requireClasses("../app/controllers/*.php");
+requireClasses("../app/controllers/*.php");
 
 // Require all my Controller Classes
 
