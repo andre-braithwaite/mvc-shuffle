@@ -76,7 +76,8 @@ class Router {
             $controller = $this->convertToStudly($controller);
 
             if (class_exists($controller)) {
-                $controller_obj = new $controller();
+                // Pass in route parameters on construction
+                $controller_obj = new $controller($this->params);
 
                 $method = $this->params['method'];
                 $method = $this->convertToCamel($method);

@@ -12,12 +12,9 @@ function requireClasses($src) {
     }
 }
 
-require '../core/Router.php';
-
-// Make sure all controllers are loaded
+// Load Classes
+requireClasses("../core/*.php");
 requireClasses("../app/controllers/*.php");
-
-// Require all my Controller Classes
 
 $router = new Router();
 
