@@ -18,10 +18,10 @@
             <div class="divider"></div>
 
             <div class="form">
-                <form>
+                <form action="login-controller/process-login" method="get">
 
-                    <input type="text" placeholder="email"/>
-                    <input type="password" placeholder="password"/>
+                    <input type="text" name="username" placeholder="username"/>
+                    <input type="password" name="password" placeholder="password"/>
                     <button>login</button>
 
                     <button>new user</button>
