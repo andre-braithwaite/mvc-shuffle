@@ -19,6 +19,8 @@
             <?php foreach ($colours as $colour): ?>
                 <input type = "button" value="<?php echo $colour ?>">
             <?php endforeach;?>
+            <input type = "button" value="<?php echo $fromModel?>">
+
         </div>
     </body>
 </html>

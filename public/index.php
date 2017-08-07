@@ -15,6 +15,7 @@ function requireClasses($src) {
 // Load Classes
 requireClasses("../core/*.php");
 requireClasses("../app/controllers/*.php");
+requireClasses("../app/models/*.php");
 
 $router = new Router();
 

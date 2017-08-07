@@ -1,6 +1,9 @@
 <?php
 
-class LoginModel
-{
+class LoginModel {
+
+    static function testMethod() {
+        return 'I am test data from the model';
+    }
 
 }
