@@ -53,7 +53,7 @@ class Router {
             return true;
         } elseif ($url == ''){
             // Go to homepage if controller and method not specified
-            $this->params = ['controller'=> 'LoginController', 'method' => 'isWorking'];
+            $this->params = ['controller'=> 'LoginController', 'method' => 'go-home'];
             return true;
         }
 
