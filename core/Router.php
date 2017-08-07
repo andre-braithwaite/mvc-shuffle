@@ -35,8 +35,8 @@ class Router {
         return false;
         */
 
-        // Match to url format /controller/method
-        // Letters and dashes allowed
+        // Match to url format '/controller/method'
+        // Small letters and dashes allowed
         $regex = "/^(?P<controller>[a-z-]+)\/(?P<method>[a-z-]+)$/";
 
         if (preg_match($regex, $url, $matches)){
@@ -59,6 +59,43 @@ class Router {
     // Method to get currently matched parameters
     function getParams() {
         return $this->params;
+    }
+
+    // Execute the routed method
+    function dispatch($url) {
+
+        if ($this->match($url)) {
+            $controller = $this->params['controller'];
+            $controller = $this->convertToStudly($controller);
+
+            if (class_exists($controller)) {
+                $controller_obj = new $controller();
+
+                $method = $this->params['method'];
+                $method = $this->convertToCamel($method);
+
+                if(is_callable([$controller_obj, $method])) {
+                    $controller_obj->$method();
+                } else {
+                    echo "Method $method in controller $controller was not found";
+                }
+            } else {
+                "Controller class $controller was not found";
+            }
+        } else {
+            echo 'Route was not matched';
+        }
+    }
+
+
+    // Convert a string with dashes to Studly caps
+    function convertToStudly($str) {
+        return str_replace(' ', '', ucwords(str_replace('-', ' ', $str)));
+    }
+
+    //  Convert a string with dashes to Camel case
+    function convertToCamel($str) {
+        return lcfirst($this->convertToStudly($str));
     }
 
 

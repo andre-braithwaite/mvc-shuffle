@@ -5,7 +5,10 @@
 
 //echo 'URL Requested = ' . $_SERVER['QUERY_STRING'];
 
-require '../Core/Router.php';
+require '../core/Router.php';
+requireClasses("../controllers/*.php");
+
+// Require all my Controller Classes
 
 $router = new Router();
 
@@ -42,5 +45,10 @@ if ($router->match($url)) {
 }
 
 
+function requireClasses($src) {
 
+    foreach (glob($src) as $filename) {
+        require $filename;
+    }
+}
 
