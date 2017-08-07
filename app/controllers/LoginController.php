@@ -7,6 +7,9 @@ class LoginController {
     }
 
     function isAlsoWorking() {
-        echo 'LoginController login method is also working!';
+        echo "Hello from LoginController 'isAlsoWorking' method!";
+        echo '<br><br>';
+        echo 'Query String Parameters: ' . '<pre>' . print_r($_GET, true) . '</pre>';
+
     }
 }
