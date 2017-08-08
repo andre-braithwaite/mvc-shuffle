@@ -43,7 +43,10 @@
                     //window.alert("did you click?");
 
 
-                    var update_button = $('#result');
+                    total = document.getElementById("result");
+                    //total.value = 'some value';
+
+                    //var update_button = $('#result');
                     //window.alert("did you click?");
 
                     $.ajax({
@@ -51,8 +54,9 @@
                         type: 'GET',
                         url: 'test-response',
                         success: function(response) {
-                            window.alert(response);
-                            //update_div.html(response);
+                            total.value = response;
+                            //window.alert(number.value);
+                            //update_button.value('yo yo yo');
                         }
                     });
 
