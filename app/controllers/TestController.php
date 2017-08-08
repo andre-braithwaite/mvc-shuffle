@@ -16,7 +16,10 @@ class TestController {
     }
 
     function testResponse() {
-        echo 'I am a test server response';
+        $userInput = $_GET['startingNum'];
+        $result = $userInput + 5;
+
+        echo $result;
     }
 
 }

@@ -29,7 +29,7 @@
             <div class="divider"></div>
 
             <!--<form action="test-response" method="get">-->
-                <input type="text" name="startingNum" placeholder="pick a number"/>
+                <input type="text" id ="startingNum" name="startingNum" placeholder="pick a number"/>
                 <button id="testAjax" type="submit">Click to add 5 </button>
             </form>
             <input type = "text"  id="result" value="0">
@@ -40,23 +40,18 @@
 
                 submit_button.click(function() {
 
-                    //window.alert("did you click?");
+                    var numEntered = document.getElementById("startingNum").value;
+                    var totalButton = document.getElementById("result");
 
-
-                    total = document.getElementById("result");
-                    //total.value = 'some value';
-
-                    //var update_button = $('#result');
-                    //window.alert("did you click?");
 
                     $.ajax({
 
                         type: 'GET',
                         url: 'test-response',
+                        data: {startingNum: numEntered},
+
                         success: function(response) {
-                            total.value = response;
-                            //window.alert(number.value);
-                            //update_button.value('yo yo yo');
+                            totalButton.value = response;
                         }
                     });
 
