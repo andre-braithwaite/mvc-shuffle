@@ -9,7 +9,7 @@
     </head>
 
     <body>
-        <h1 class="page-heading">Testing View receiving data</h1>
+        <h1 class="page-heading">View sending / receiving data</h1>
         <div class="divider"></div>
 
         <div class="status-info">
@@ -23,15 +23,11 @@
             <?php endforeach;?>
 
 
-
-
-
             <div class="divider"></div>
 
-            <!--<form action="test-response" method="get">-->
-                <input type="text" id ="startingNum" name="startingNum" placeholder="pick a number"/>
-                <button id="testAjax" type="submit">Click to add 5 </button>
-            </form>
+
+            <input type="text" id ="startingNum" name="startingNum" placeholder="pick a number"/>
+            <button id="testAjax" type="submit">Click to add 5 </button>
             <input type = "text"  id="result" value="0">
 
 
@@ -43,7 +39,6 @@
                     var numEntered = document.getElementById("startingNum").value;
                     var totalButton = document.getElementById("result");
 
-
                     $.ajax({
 
                         type: 'GET',
@@ -54,14 +49,8 @@
                             totalButton.value = response;
                         }
                     });
-
-
-
                 });
             </script>
-
-
-
         </div>
     </body>
 </html>

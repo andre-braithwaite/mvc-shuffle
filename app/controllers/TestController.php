@@ -1,6 +1,6 @@
 <?php
 
-class TestController {
+class TestController extends Controller {
 
     function testingView() {
         View::render('TestView.php', [

@@ -12,28 +12,8 @@ class Router {
     // Array of parameters from the matched route
     protected $params = [];
 
-
-    // Method to add routes to the routing table
-    function add($route, $params) {
-        $this->routes[$route] = $params;
-    }
-
-    // Method to get all the routes in the table
-    public function getRoutes() {
-        return $this->routes;
-    }
-
-    // Method to take url from the query string and match this to a route in the routing table
+    // Take url from the query string and match this to a route in the routing table
     function match($url) {
-        /*
-        foreach($this->routes as $route => $params) {
-            if ($url == $route) {
-                $this->params = $params;
-                return true;
-            }
-        }
-        return false;
-        */
 
         // Match to url format '/controller/method'
         // Small letters and dashes allowed
@@ -56,8 +36,6 @@ class Router {
             $this->params = ['controller'=> 'LoginController', 'method' => 'go-home'];
             return true;
         }
-
-
     }
 
     // Method to get currently matched parameters
@@ -70,7 +48,6 @@ class Router {
 
         $url = $this->removeQueryParams($url);
 
-        //echo 'Dispatching route!';
         if ($this->match($url)) {
             $controller = $this->params['controller'];
             $controller = $this->convertToStudly($controller);
@@ -98,7 +75,6 @@ class Router {
         }
     }
 
-
     // Convert a string with dashes to Studly caps
     function convertToStudly($str) {
         return str_replace(' ', '', ucwords(str_replace('-', ' ', $str)));
@@ -123,6 +99,4 @@ class Router {
         }
         return $url;
     }
-
-
 }
