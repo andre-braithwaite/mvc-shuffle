@@ -17,4 +17,37 @@ class LoginModel {
         }
     }
 
+    static function userFound($xml, $username) {
+
+        $userExists = false;
+
+        foreach ($xml->children() as $user) {
+            if ($username == $user->username) {
+                $userExists = true;
+            }
+        }
+
+        if ($userExists) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    static function passCorrect($xml, $username, $password) {
+
+        $goodPass = false;
+
+        foreach ($xml->children() as $user) {
+            if ($username == $user->username && $password == $user->password) {
+                $goodPass = true;
+            }
+        }
+
+        if ($goodPass) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

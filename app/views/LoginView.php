@@ -18,7 +18,7 @@
             <div class="divider"></div>
 
             <div class="form">
-                <form action="login-controller/process-login" method="get">
+                <form action="process-login" method="get">
 
                     <input type="text" name="username" placeholder="username"/>
                     <input type="password" name="password" placeholder="password"/>
