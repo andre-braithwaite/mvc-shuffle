@@ -2,6 +2,8 @@
 
 // Front Controller, every request goes through here.
 // Route comes in through the url query string and is matched with the correct method
+// paths are relative to this index.php
+
 
 // Require all classes in a given folder
 function requireClasses($src) {

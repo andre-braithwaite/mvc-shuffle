@@ -47,11 +47,7 @@ class LoginController extends Controller {
         $do_login = false;
 
 
-        if(file_exists('../../../models/tests/user-logins/test-users.xml')){
-
-        } else {
-            echo 'User Database not found!';
-        }
+    LoginModel::databaseFound();
 
         //echo 'username entered: ' . $username . '<br>';
         //echo 'password entered: ' . $password;

@@ -12,7 +12,7 @@ class Router {
     // Array of parameters from the matched route
     protected $params = [];
 
-    // Take url from the query string and match this to a route in the routing table
+    // Take url from the query string and extract controller and method required
     function match($url) {
 
         // Match to url format '/controller/method'
@@ -31,10 +31,6 @@ class Router {
 
             $this->params = $params;
             return true;
-        } elseif ($url == ''){
-            // Go to homepage if controller and method not specified
-            $this->params = ['controller'=> 'LoginController', 'method' => 'go-home'];
-            return true;
         }
     }
 
@@ -44,7 +40,13 @@ class Router {
     }
 
     // Execute the routed method
-    function dispatch($url) {
+    function dispatch($url = '') {
+
+        // Redirect to login page if path not specified
+        if ($url == '') {
+            header("Location: login-controller/go-home");
+        }
+
 
         $url = $this->removeQueryParams($url);
 
@@ -73,6 +75,7 @@ class Router {
             echo "Routes must be in the format 'controller/method'";
 
         }
+
     }
 
     // Convert a string with dashes to Studly caps

@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <title>Welcome to Shuffle</title>
 
-        <link rel="stylesheet" type="text/css" href="public/style.css">
+        <!--<relative to -->
         <link rel="stylesheet" type="text/css" href="../public/style.css">
 
     </head>
