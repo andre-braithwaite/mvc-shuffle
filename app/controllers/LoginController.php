@@ -13,8 +13,18 @@ class LoginController extends Controller {
         $do_login = false;
 
 
-    LoginModel::databaseFound();
+    if (LoginModel::databaseFound()){
+        $xml = LoginModel::xmlElement();
 
+        if ((LoginModel::userFound($xml, $username)) && (LoginModel::passCorrect($xml, $username, $password))){
+            $do_login = true;
+        } else {
+            View::render('LoginErrorView.php');
+        }
+
+
+    }
+        //echo $do_login ? 'true' : 'false';
         //echo 'username entered: ' . $username . '<br>';
         //echo 'password entered: ' . $password;
     }

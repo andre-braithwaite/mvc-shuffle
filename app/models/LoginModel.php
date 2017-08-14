@@ -9,12 +9,16 @@ class LoginModel {
     static function databaseFound() {
 
         if(file_exists('../app/models/data/users.xml')){
-            echo 'User Database found';
+            //echo 'User Database found';
             return true;
         } else {
-            echo 'User Database not found!';
+            //echo 'User Database not found!';
             return false;
         }
+    }
+
+    static function xmlElement() {
+        return new SimpleXMLElement('../app/models/data/users.xml', 0, true);
     }
 
     static function userFound($xml, $username) {
