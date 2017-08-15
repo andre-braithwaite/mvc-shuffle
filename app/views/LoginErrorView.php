@@ -12,15 +12,27 @@
 
     <body>
 
+    <div class="global-style">
+
+
+    <h1 class="page-heading">Login Error!</h1>
+    <div class="divider"></div>
+
     <?php
 
     $username = $_REQUEST['username'];
     $password = $_REQUEST['password'];
     $xml = LoginModel::xmlElement();
 
+
+
     echo '<div class="status-info">';
 
-        // Print login information
+    echo '<p>';
+    echo '<p>';
+
+
+    // Print login information
         echo '<input type="button" value = "USER DATABASE EXISTS" style="background:#4CAF50;color: #FFFFFF">';
 
         // Check user exists
@@ -47,5 +59,6 @@
 
 
     ?>
+    </div>
     </body>
 </html>

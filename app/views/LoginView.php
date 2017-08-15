@@ -21,12 +21,18 @@
                 <form action="process-login" method="get">
 
                     <input type="text" name="username" placeholder="username"/>
+                    <div class="divider"></div>
+
+
                     <input type="password" name="password" placeholder="password"/>
+                    <div class="divider"></div>
+
                     <button>login</button>
+
+
 
                     <button>new user</button>
 
-                    <div class="divider"></div>
 
                     <button style="background:darkred" type="button"
                             onmouseout="this.style.backgroundColor='darkred'";
