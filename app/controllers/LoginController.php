@@ -23,6 +23,8 @@ class LoginController extends Controller {
         }
 
 
+    } else {
+        View::render('LoginErrorView.php');
     }
         //echo $do_login ? 'true' : 'false';
         //echo 'username entered: ' . $username . '<br>';
