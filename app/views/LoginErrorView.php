@@ -59,6 +59,7 @@
 
     }
 
+
     } else {
         echo "<input type=\"button\" value = \"USER DATABASE NOT FOUND!\" style=\"background:darkred;color: #FFFFFF\">";
     }
