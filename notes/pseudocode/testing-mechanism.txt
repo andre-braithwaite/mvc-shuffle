@@ -1,0 +1,42 @@
+MANUAL STEPS
+
+Add a show/hide div button of status area
+
+if there are new cards in the deck
+    set number of cards to review
+        if new cards is > 10 set to 10
+        else set to new cards
+    while cards left > 0
+        return id of first card marked new
+        display the question portion of that card
+        take the users input
+        convert to lower case
+        check if the answer was correct
+        if correct display 'good job'
+                take the time the user responded
+                decrement newCardsLeft
+                update efactor
+                update due date
+        else display 'wrong'
+else
+
+
+if there are cards due today in the deck
+
+while cards left > 0
+    return id of first card marked new
+    display the question portion of that card
+    take the users input
+    convert to lower case
+    check if the answer was correct
+    if correct display 'good job'
+            take the time the user responded
+            decrement reviewCardsLeft
+            update efactor
+            update due date
+    else display 'wrong'
+
+
+
+
+

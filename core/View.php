@@ -7,7 +7,7 @@ class View {
         // Split data received into individual variables
         extract($dataReceived, EXTR_SKIP);
 
-        $file = "../app/Views/$view";
+        $file = "../app/views/$view";
 
         if (is_readable($file)) {
             require $file;

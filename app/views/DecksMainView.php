@@ -32,10 +32,10 @@ $activeDeck = $_SESSION['activeDeck'];
 
             <input type = "button" value="PLEASE CHOOSE YOUR DECK" style="background:#006db9; color: white">
             <?php
-            $deckLocation = DeckModel::deckFolder();
+            $decksFolder = DeckModel::deckFolder();
 
             // Supress missing directory error
-            $decksDir = @opendir($deckLocation . $username . '/');
+            $decksDir = @opendir($decksFolder . $username . '/');
             $userDecks = DeckModel::getDecks($decksDir);
 
             // Make a button for each deck in the users directory
