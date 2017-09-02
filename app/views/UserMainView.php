@@ -25,6 +25,9 @@
         <button type="button" onclick="window.location='show-decks';">
         choose a deck</button>
 
+        <button type="button" onclick="window.location='../deck-controller/remove-decks';">
+            remove a deck</button>
+
         <button type="button" onclick="window.location='../../../views/tests/user-logins/user-logins.html';">
         set password</button>
 

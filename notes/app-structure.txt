@@ -1,0 +1,41 @@
+*** means TODO
+
+DATA FLOW
+
+LoginView   =>  LoginController =>  UserController => UserMainView
+                                =>  LoginErrorView
+
+            =>  CreateUserView***
+            =>  ToolsMainView***
+
+
+
+
+
+
+
+
+VIEWS
+
+LoginView
+    user-input  =>  username    =>  LoginController
+    user-input  =>  password    =>  LoginController
+
+    on-click    =>  CreateUserView***
+    on-click    =>  ToolsMainView**
+
+
+
+
+
+
+CONTROLLER ACTIONS
+
+LoginController =>  UserMainView
+                =>  LoginErrorView
+
+
+LoginController
+
+MODEL ACTIONS
+

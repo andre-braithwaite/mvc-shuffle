@@ -30,18 +30,20 @@ $activeDeck = $_SESSION['activeDeck'];
 
         <form action="../deck-controller/set-deck" method="post">
 
+            <input type = "button" value="PLEASE CHOOSE YOUR DECK" style="background:#006db9; color: white">
             <?php
             $deckLocation = DeckModel::deckFolder();
 
             // Supress missing directory error
             $decksDir = @opendir($deckLocation . $username . '/');
 
+
             if($decksDir){
                 while(($deck = readdir($decksDir)) != false){
                     if($deck != '.' && $deck != '..' && $deck != '.htaccess'){
 
                         $deckName = substr($deck, 0, -4);
-                        echo "<button type = submit name=\"active\" value = $deck onclick=\"window.location='setDeck.php'\">$deckName</button><br> ";
+                        echo "<button type = submit name=\"active\" value = $deck >$deckName</button><br> ";
 
                     }
                 }
