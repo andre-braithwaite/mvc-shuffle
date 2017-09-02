@@ -40,7 +40,8 @@ $activeDeck = $_SESSION['activeDeck'];
 
             // Make a button for each deck in the users directory
             foreach($userDecks as $deck) {
-                echo "<button type = submit name=\"active\" value = $deck >$deck</button><br> ";
+                $deckName = substr($deck, 0, -4);
+                echo "<button type = submit name=\"active\" value = $deck >$deckName</button><br> ";
             }
 
             ?>

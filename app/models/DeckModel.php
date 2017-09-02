@@ -15,10 +15,7 @@ class DeckModel {
             while (($deck = readdir($decksDir)) != false) {
                 if ($deck != '.' && $deck != '..' && $deck != '.htaccess') {
 
-                    $deckName = substr($deck, 0, -4);
-                    array_push($decks, $deckName);
-                    //echo "<button type = submit name=\"active\" value = $deck >$deckName</button><br> ";
-
+                    array_push($decks, $deck);
                 }
             }
             closedir($decksDir);
