@@ -7,8 +7,10 @@ class DeckController {
         //print_r($_POST);
         session_start();
 
-        $_SESSION['activeDeck'] = $_POST['active'];
+        $_SESSION['activeDeck'] = $_REQUEST['active'];
         //print_r($_SESSION['activeDeck']);
+
+
 
         echo "<script>window.location='study-menu';</script>";
     }

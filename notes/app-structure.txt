@@ -18,8 +18,7 @@ LoginView   =>  LoginController =>  UserController => UserMainView
 VIEWS
 
 LoginView
-    user-input  =>  username    =>  LoginController
-    user-input  =>  password    =>  LoginController
+    user-input  =>  username, password  =>  LoginController
 
     on-click    =>  CreateUserView***
     on-click    =>  ToolsMainView**
@@ -34,8 +33,6 @@ CONTROLLER ACTIONS
 LoginController =>  UserMainView
                 =>  LoginErrorView
 
-
-LoginController
 
 MODEL ACTIONS
 

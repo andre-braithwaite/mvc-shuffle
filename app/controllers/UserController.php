@@ -7,7 +7,7 @@ class UserController extends Controller {
     }
 
     function showDecks() {
-        View::render('DeckMenuView.php');
+        View::render('DecksMainView.php');
     }
 
 

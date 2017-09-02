@@ -28,7 +28,7 @@ $activeDeck = $_SESSION['activeDeck'];
 
     <div class="status-info">
 
-        <form action="../deck-controller/set-deck" method="post">
+        <form action="../deck-controller/set-deck" method="get">
 
             <input type = "button" value="PLEASE CHOOSE YOUR DECK" style="background:#006db9; color: white">
             <?php
@@ -36,19 +36,13 @@ $activeDeck = $_SESSION['activeDeck'];
 
             // Supress missing directory error
             $decksDir = @opendir($deckLocation . $username . '/');
+            $userDecks = DeckModel::getDecks($decksDir);
 
-
-            if($decksDir){
-                while(($deck = readdir($decksDir)) != false){
-                    if($deck != '.' && $deck != '..' && $deck != '.htaccess'){
-
-                        $deckName = substr($deck, 0, -4);
-                        echo "<button type = submit name=\"active\" value = $deck >$deckName</button><br> ";
-
-                    }
-                }
-                closedir($decksDir);
+            // Make a button for each deck in the users directory
+            foreach($userDecks as $deck) {
+                echo "<button type = submit name=\"active\" value = $deck >$deck</button><br> ";
             }
+
             ?>
         </form>
 
