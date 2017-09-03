@@ -26,25 +26,53 @@ class DeckController {
         View::render('TestCardsView.php');
     }
 
-    function processCard() {
-        //echo $_GET['answerWord'] . ', '. $_GET['seconds'] ;
 
+    function processCard() {
+
+        // Get input variables
+        $answerWord = $_GET['answerWord'];
+        $seconds = $_GET['seconds'] ;
+
+        // Get session variables
         session_start();
         $username = $_SESSION['username'];
         $activeCard = $_SESSION['activeCard'];
+        $feedbackQuestion = $_SESSION['activeQuestion'];
         $activeDeck = $_SESSION['activeDeck'];
+
+        // Local variables
         $deckXML = DeckModel::deckFolder() . $username . '/' . $activeDeck;
-
-
-
-        $answer = $_GET['answerWord'];
         $correctAnswer = DeckModel::getField($deckXML, $activeCard, 'answer');
 
-        if ($answer == $correctAnswer) {
-            echo 'That\'s Right!';
+        // Set the next card to test
+        $_SESSION['activeCard'] = '0002';
+        $_SESSION['activeQuestion'] = DeckModel::getField($deckXML, $_SESSION['activeCard'], 'question');
+
+
+        // Check and grade response
+        if ($answerWord == $correctAnswer) {
+            if ($seconds > 6) {
+                $feedback = 'Fantastic! you had ' . $seconds . ' seconds remaining!';
+            } elseif ($seconds > 3){
+                $feedback = 'Great job! you had ' . $seconds . ' seconds remaining!';
+
+            } elseif ($seconds > 1){
+                $feedback = 'Well done! you had ' . $seconds . ' seconds remaining!';
+
+            } elseif ($seconds == 1){
+                $feedback = 'Nice! you had ' . $seconds . ' second remaining!';
+            } else {
+                $feedback = 'Good, you answered correctly!';
+            }
         } else {
-            echo 'Wrong! The corect answer is ' . $correctAnswer;
+            $feedback = 'Wrong! \'' . $feedbackQuestion . '\' means \'' . $correctAnswer . '\'';
         }
+
+        $response = array("feedback"=>$feedback,"nextQuestion"=>'\'' . $_SESSION['activeQuestion'] . '\'');
+        header("Content-Type: application/json");
+        echo json_encode($response);
+
+
 
 
     }

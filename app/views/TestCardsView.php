@@ -41,6 +41,7 @@ $_SESSION['activeQuestion'] = DeckModel::getField($deckXML, $_SESSION['activeCar
                 <input type = "button" value="PLEASE TRANSLATE" style="background:#006db9; color: white">
 
                 <input type = "button"
+                       id = "activeQ"
                        style="background:#006db9; color: white" value="<?php echo '\'' . $_SESSION['activeQuestion'] . '\'';?>">
 
                 <input placeholder="answer here" type="text"  id ="answerWord" style="text-align:center"/>
@@ -52,7 +53,38 @@ $_SESSION['activeQuestion'] = DeckModel::getField($deckXML, $_SESSION['activeCar
                 <input type = "text"  id="result">
 
 
-            <script src="../app/js/takeAnswer.js"></script>
+            <script>
+                var submit_button = $('#testAjax');
+
+                submit_button.click(function() {
+
+                    var resultArea = document.getElementById("result");
+                    var questionArea = document.getElementById("activeQ")
+
+
+                    var answerWord = document.getElementById("answerWord").value;
+                    var seconds = document.getElementById("seconds").value;
+
+                    $.ajax({
+
+                        type:'GET',
+                        url: 'process-card',
+                        data: {answerWord: answerWord, seconds: seconds},
+                        dataType: "JSON",
+
+                        success: function(response) {
+                            resultArea.value = response.feedback;
+                            questionArea.value = response.nextQuestion;
+
+                            //Reset countdown and input box for the new question
+                            secs = 10;
+                            countdown();
+                            document.getElementById("answerWord").value = '';
+
+                        }
+                    });
+                });
+            </script>
 
 
 

@@ -45,11 +45,12 @@ function Decrement() {
     secs--;
 
     if (secs < 0) {
+        secs = 0;
         clearTimeout(timeout);
         return;
     }
     countdown();
-}
+    }
 }
 
 
