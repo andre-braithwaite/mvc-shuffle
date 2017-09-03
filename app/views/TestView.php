@@ -28,7 +28,7 @@
 
             <input type="text" id ="startingNum" name="startingNum" placeholder="pick a number"/>
             <button id="testAjax" type="submit">Click to add 5 </button>
-            <input type = "text"  id="result" value="0">
+            <input type = "text"  id="result">
 
 
             <script>

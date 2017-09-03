@@ -9,6 +9,7 @@ if there are new cards in the deck
     while cards left > 0
         return id of first card marked new
         display the question portion of that card
+        reset counter
         take the users input
         convert to lower case
         check if the answer was correct

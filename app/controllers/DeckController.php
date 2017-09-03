@@ -25,4 +25,28 @@ class DeckController {
     function testCards() {
         View::render('TestCardsView.php');
     }
+
+    function processCard() {
+        //echo $_GET['answerWord'] . ', '. $_GET['seconds'] ;
+
+        session_start();
+        $username = $_SESSION['username'];
+        $activeCard = $_SESSION['activeCard'];
+        $activeDeck = $_SESSION['activeDeck'];
+        $deckXML = DeckModel::deckFolder() . $username . '/' . $activeDeck;
+
+
+
+        $answer = $_GET['answerWord'];
+        $correctAnswer = DeckModel::getField($deckXML, $activeCard, 'answer');
+
+        if ($answer == $correctAnswer) {
+            echo 'That\'s Right!';
+        } else {
+            echo 'Wrong! The corect answer is ' . $correctAnswer;
+        }
+
+
+    }
+
 }

@@ -1,17 +1,19 @@
 <?php
 session_start();
-// Declare new session variable
+// Declare new session variables
 $_SESSION['activeCard'];
+$_SESSION['activeQuestion'];
+
 
 $username = $_SESSION['username'];
-$activeCard = $_SESSION['activeCard'];
 $activeDeck = $_SESSION['activeDeck'];
 $deckXML = DeckModel::deckFolder() . $username . '/' . $activeDeck;
 
 // Choose the first card to test
-$activeCard = '0001';
+$_SESSION['activeCard'] = '0001';
+
 // Get the first question
-$activeQuestion = DeckModel::getField($deckXML, $activeCard, 'question')
+$_SESSION['activeQuestion'] = DeckModel::getField($deckXML, $_SESSION['activeCard'], 'question')
 
 
 ?>
@@ -24,6 +26,7 @@ $activeQuestion = DeckModel::getField($deckXML, $activeCard, 'question')
     <link rel="stylesheet" type="text/css" href="../public/style.css">
     <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
     <script src="../app/js/countdown.js"></script>
+
     <!-- Start counting down -->
     <script>countdown();</script>
 </head>
@@ -34,19 +37,24 @@ $activeQuestion = DeckModel::getField($deckXML, $activeCard, 'question')
             <div class="divider"></div>
         <div class="status-info">
 
-            <form action="process-answer" method="get">
 
                 <input type = "button" value="PLEASE TRANSLATE" style="background:#006db9; color: white">
 
                 <input type = "button"
-                       style="background:#006db9; color: white" value="<?php echo '\'' . $activeQuestion . '\'';?>">
+                       style="background:#006db9; color: white" value="<?php echo '\'' . $_SESSION['activeQuestion'] . '\'';?>">
 
-                <input placeholder="answer here" type="text" name="suppliedAnswer" style="text-align:center"/>
+                <input placeholder="answer here" type="text"  id ="answerWord" style="text-align:center"/>
 
                 <div class="divider"></div>
-                <button type="submit">check my answer</button>
+                <button id="testAjax" type="submit">check my answer</button>
                 <input type = "text"  id="seconds" background="#4CAF50" style="text-align:center;" name="secondsRemaining" >
-            </form>
+
+                <input type = "text"  id="result">
+
+
+            <script src="../app/js/takeAnswer.js"></script>
+
+
 
         </div>
     </div>
