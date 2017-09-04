@@ -66,6 +66,7 @@ if($_SESSION['newToTest'] > 0) {
 
             <script>
                 var submit_button = $('#testAjax');
+                var process = 'process-new';
 
                 submit_button.click(function() {
 
@@ -80,27 +81,38 @@ if($_SESSION['newToTest'] > 0) {
                     $.ajax({
 
                         type:'GET',
-                        url: 'process-new',
+                        url: process,
                         data: {answerWord: answerWord, seconds: seconds},
                         dataType: "JSON",
 
                         success: function(response) {
 
+
+
                             if (response.newDone){
-                                window.location='finished-test';
-                                var scroll = $( document ).scrollTop();
-                                window.location='review-cards' + '?scroll=' + scroll;
-                                window.location='review-cards';
+
+                                if (response.reviewDone == 'true'){
+                                    window.location='finished-test';
+                                }
+
+                                process = 'process-review';
+                                if(response.reviewLeft != 1) {
+                                    remainingArea.value = response.reviewLeft + ' CARDS LEFT TO REVIEW';
+                                } else {
+                                    remainingArea.value = response.reviewLeft + ' CARD LEFT TO REVIEW';
+                                }
+                            } else {
+
+                                if(response.newLeft != 1) {
+                                    remainingArea.value = response.newLeft + ' NEW CARDS REMAINING';
+                                } else {
+                                    remainingArea.value = response.newLeft + ' NEW CARD REMAINING';
+                                }
                             }
 
                             resultArea.value = response.feedback;
                             questionArea.value = response.nextQuestion;
 
-                            if(response.newLeft != 1) {
-                                remainingArea.value = response.newLeft + ' NEW CARDS REMAINING';
-                            } else {
-                                remainingArea.value = response.newLeft + ' NEW CARD REMAINING';
-                            }
 
                             //Reset countdown and input box for the new question
                             secs = 10;

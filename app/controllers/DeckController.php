@@ -26,10 +26,6 @@ class DeckController {
         View::render('TestCardsView.php');
     }
 
-    function reviewCards() {
-        View::render('ReviewCardsView.php');
-    }
-
     function finishedTest() {
         View::render('FinishedTestingView.php');
     }
@@ -97,7 +93,10 @@ class DeckController {
         }
 
         // Decrement cards left to review
-        $_SESSION['newToTest'] = $_SESSION['newToTest'] - 1;
+        $temp = $_SESSION['newToTest'];
+        $_SESSION['newToTest'] = $temp - 1;
+
+
         $newLeft = $_SESSION['newToTest'];
 
 
@@ -106,9 +105,14 @@ class DeckController {
         $_SESSION['activeQuestion'] = DeckModel::getField($deckXML, $_SESSION['activeCard'], 'question');
 
         // Flag we've run out of new questions if the active question results in an empty string
-        if (($_SESSION['activeQuestion'] == '') or ($_SESSION['newToTest'] == 0)) {
+        if (($_SESSION['activeQuestion'] == '') or ($_SESSION['newToTest'] <= 0)) {
            $newDone = 'true';
+           $_SESSION['activeCard'] = DeckModel::getReviewCard($deckXML);
+           $_SESSION['activeQuestion'] = DeckModel::getField($deckXML, $_SESSION['activeCard'], 'question');
+
         }
+        $reviewLeft = DeckModel::numReview($deckXML);
+
 
         $goodAnswer = self::gotRight($answerWord, $correctAnswer);
         $feedback = self::giveFeedback($goodAnswer, $seconds, $feedbackQuestion, $correctAnswer);
@@ -119,7 +123,8 @@ class DeckController {
         "feedback"=>$feedback,
         "nextQuestion"=>'\'' . $_SESSION['activeQuestion'] . '\'',
         "newLeft"=>$newLeft,
-        "newDone"=>$newDone);
+        "newDone"=>$newDone,
+        "reviewLeft"=>$reviewLeft);
 
         header("Content-Type: application/json");
         echo json_encode($response);
@@ -181,7 +186,8 @@ class DeckController {
             "feedback"=>$feedback,
             "nextQuestion"=>'\'' . $_SESSION['activeQuestion'] . '\'',
             "reviewLeft"=>$reviewLeft,
-            "reviewDone"=>$reviewDone);
+            "reviewDone"=>$reviewDone,
+            "newDone"=>'true');
 
         header("Content-Type: application/json");
         echo json_encode($response);
