@@ -54,12 +54,29 @@ class DeckModel
         return $totalCards;
     }
 
+    // Return the number of cards to review today
+    static function numReview($xmlName)
+    {
+        // Set the timezone
+        date_default_timezone_set('Europe/London');
+
+        $xml = new SimpleXMLElement($xmlName, 0, true);
+        $totalCards = 0;
+
+        foreach ($xml->children() as $card) {
+            if ($card->due == self::getTodaysDate()) {
+                $totalCards += 1;
+            }
+        }
+        return $totalCards;
+    }
+
     static function newToTest($deckXML)
     {
         $newAvailable = DeckModel::numNew($deckXML);
 
-        if ($newAvailable > 10) {
-            return 10;
+        if ($newAvailable > 5) {
+            return 5;
         } else {
             return $newAvailable;
         }
@@ -88,6 +105,19 @@ class DeckModel
                 $card->new = "false";
                 // save changing card to false
                 self::saveXml($xml, $xmlName);
+                return (string)$card->rank;
+            }
+        }
+    }
+
+    // Returns rank of first card marked for review today
+    static function getReviewCard($xmlName)
+    {
+
+        $xml = new SimpleXMLElement($xmlName, 0, true);
+
+        foreach ($xml->children() as $card) {
+            if ($card->due == self::getTodaysDate()) {
                 return (string)$card->rank;
             }
         }
@@ -170,7 +200,35 @@ class DeckModel
                 self::saveXml($xml, $deck);
             }
         }
-}
+    }
+
+
+    static function againToday($deck, $rank) {
+
+        // Set the timezone
+        date_default_timezone_set('Europe/London');
+
+        $repNum = self::getField($deck, $rank, 'repNum');
+        $newDate = self::getTodaysDate();
+
+        $xml = new SimpleXMLElement($deck, 0, true);
+
+        // Update due date
+        foreach ($xml->children() as $card) {
+            if ($card->rank == $rank) {
+                $card->due = $newDate;
+                self::saveXml($xml, $deck);
+            }
+        }
+
+        // Update the repetition number
+        foreach ($xml->children() as $card) {
+            if ($card->rank == $rank) {
+                $card->repNum = $repNum + 1;
+                self::saveXml($xml, $deck);
+            }
+        }
+    }
 
 
 }
