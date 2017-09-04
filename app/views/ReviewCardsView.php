@@ -1,8 +1,9 @@
 <?php
 // Keep blue background when checking cards to review
 echo '<body style=\'background-color:#3b5998;\'></body>';
-
 session_start();
+
+
 // Declare new session variables
 $_SESSION['activeCard'];
 $_SESSION['activeQuestion'];
@@ -10,20 +11,20 @@ $_SESSION['activeQuestion'];
 
 $username = $_SESSION['username'];
 $activeDeck = $_SESSION['activeDeck'];
-
 $deckXML = DeckModel::deckFolder() . $username . '/' . $activeDeck;
 
-// Set how many new cards to test
-$_SESSION['newToTest'] = DeckModel::newToTest($deckXML);;
-
+// Set how many review cards to test
+$toReview = DeckModel::numReview($deckXML);
 
 // Start testing
-if($_SESSION['newToTest'] > 0) {
-    $startMessage = $_SESSION['newToTest'] . ' NEW CARDS REMAINING';
-    $_SESSION['activeCard'] = DeckModel::getNewCard($deckXML);
+
+
+if($toReview > 0) {
+    $startMessage = $toReview . ' CARDS LEFT TO REVIEW';
+    $_SESSION['activeCard'] = DeckModel::getReviewCard($deckXML);
     $_SESSION['activeQuestion'] = DeckModel::getField($deckXML, $_SESSION['activeCard'], 'question');
 } else {
-    echo "<script>window.location='review-cards';</script>";
+    echo "<script>window.location='finished-test';</script>";
 }
 
 ?>
@@ -41,7 +42,21 @@ if($_SESSION['newToTest'] > 0) {
     <script>countdown();</script>
 </head>
 
-<body>
+<body style='background-color:#3b5998;'>
+
+<script>
+    // scroll down to position of previous page
+    //to make transition less jarring
+    $(function() {
+        if ( window.location.href.indexOf( 'scroll' ) != -1 ) {
+            var match = window.location.href.split('?')[1].match( /\d+$/ );
+            var scroll = match[0];
+            $( 'html, body' ).scrollTop( scroll );
+        }
+    });
+
+</script>
+
     <div class="global-style">
             <h1 class="page-heading"><?php echo $username . ' is logged in.';?></h1>
 
@@ -76,30 +91,28 @@ if($_SESSION['newToTest'] > 0) {
 
                     var answerWord = document.getElementById("answerWord").value;
                     var seconds = document.getElementById("seconds").value;
+                    //alert('did u click?');
 
                     $.ajax({
 
                         type:'GET',
-                        url: 'process-new',
+                        url: 'process-review',
                         data: {answerWord: answerWord, seconds: seconds},
                         dataType: "JSON",
 
                         success: function(response) {
 
-                            if (response.newDone){
+                            if (response.reviewDone == 'true'){
                                 window.location='finished-test';
-                                var scroll = $( document ).scrollTop();
-                                window.location='review-cards' + '?scroll=' + scroll;
-                                window.location='review-cards';
                             }
 
                             resultArea.value = response.feedback;
                             questionArea.value = response.nextQuestion;
 
-                            if(response.newLeft != 1) {
-                                remainingArea.value = response.newLeft + ' NEW CARDS REMAINING';
+                            if(response.reviewLeftLeft != 1) {
+                                remainingArea.value = response.reviewLeft + ' CARDS LEFT TO REVIEW';
                             } else {
-                                remainingArea.value = response.newLeft + ' NEW CARD REMAINING';
+                                remainingArea.value = response.reviewLeft + ' CARD LEFT TO REVIEW';
                             }
 
                             //Reset countdown and input box for the new question

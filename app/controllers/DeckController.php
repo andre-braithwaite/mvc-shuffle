@@ -26,11 +26,18 @@ class DeckController {
         View::render('TestCardsView.php');
     }
 
+    function reviewCards() {
+        View::render('ReviewCardsView.php');
+    }
+
+    function finishedTest() {
+        View::render('FinishedTestingView.php');
+    }
 
     // Card processing functions
 
     function gotRight($answerGiven, $correctAnswer) {
-        if ($answerGiven == $correctAnswer){
+        if (strtolower($answerGiven) == strtolower($correctAnswer)){
             return true;
         } else {
             return false;
@@ -56,7 +63,7 @@ class DeckController {
     }
 
 
-    function processCard() {
+    function processNew() {
 
         // Get input variables
         $answerWord = $_GET['answerWord'];
@@ -71,19 +78,37 @@ class DeckController {
 
         // Local variables
         $deckXML = DeckModel::deckFolder() . $username . '/' . $activeDeck;
-        $newLeft = DeckModel::numNew($deckXML);
         $correctAnswer = DeckModel::getField($deckXML, $activeCard, 'answer');
 
-        // update eFactor
-        $grade = DeckModel::speedGrade($seconds);
-        DeckModel::newE($deckXML,$activeCard, $grade);
+        if (self::gotRight($answerWord, $correctAnswer)){
+            // update eFactor
+            $grade = DeckModel::speedGrade($seconds);
+            DeckModel::newE($deckXML,$activeCard, $grade);
 
-        // Update due date
-        DeckModel::newDate($deckXML, $activeCard);
+            // Update due date
+            DeckModel::newDate($deckXML, $activeCard);
+        } else {
+            // update eFactor
+            $grade = 0;
+            DeckModel::newE($deckXML,$activeCard, $grade);
+
+            // Update due date
+            DeckModel::againToday($deckXML, $activeCard);
+        }
+
+        // Decrement cards left to review
+        $_SESSION['newToTest'] = $_SESSION['newToTest'] - 1;
+        $newLeft = $_SESSION['newToTest'];
+
 
         // Set the next card to test
         $_SESSION['activeCard'] = DeckModel::getNewCard($deckXML);
         $_SESSION['activeQuestion'] = DeckModel::getField($deckXML, $_SESSION['activeCard'], 'question');
+
+        // Flag we've run out of new questions if the active question results in an empty string
+        if (($_SESSION['activeQuestion'] == '') or ($_SESSION['newToTest'] == 0)) {
+           $newDone = 'true';
+        }
 
         $goodAnswer = self::gotRight($answerWord, $correctAnswer);
         $feedback = self::giveFeedback($goodAnswer, $seconds, $feedbackQuestion, $correctAnswer);
@@ -93,7 +118,70 @@ class DeckController {
         $response = array(
         "feedback"=>$feedback,
         "nextQuestion"=>'\'' . $_SESSION['activeQuestion'] . '\'',
-        "newLeft"=>$newLeft);
+        "newLeft"=>$newLeft,
+        "newDone"=>$newDone);
+
+        header("Content-Type: application/json");
+        echo json_encode($response);
+    }
+
+    function processReview() {
+
+        // Get input variables
+        $answerWord = $_GET['answerWord'];
+        $seconds = $_GET['seconds'] ;
+
+        // Get session variables
+        session_start();
+        $username = $_SESSION['username'];
+        $activeCard = $_SESSION['activeCard'];
+        $feedbackQuestion = $_SESSION['activeQuestion'];
+        $activeDeck = $_SESSION['activeDeck'];
+
+        // Local variables
+        $deckXML = DeckModel::deckFolder() . $username . '/' . $activeDeck;
+        $correctAnswer = DeckModel::getField($deckXML, $activeCard, 'answer');
+
+        if (self::gotRight($answerWord, $correctAnswer)){
+            // update eFactor
+            $grade = DeckModel::speedGrade($seconds);
+            DeckModel::newE($deckXML,$activeCard, $grade);
+
+            // Update due date
+            DeckModel::newDate($deckXML, $activeCard);
+
+        } else {
+            // update eFactor
+            $grade = 0;
+            DeckModel::newE($deckXML,$activeCard, $grade);
+
+            // Update due date
+            DeckModel::againToday($deckXML, $activeCard);
+
+        }
+        $reviewLeft = DeckModel::numReview($deckXML);
+
+
+
+        // Set the next card to test
+        $_SESSION['activeCard'] = DeckModel::getReviewCard($deckXML);
+        $_SESSION['activeQuestion'] = DeckModel::getField($deckXML, $_SESSION['activeCard'], 'question');
+
+        // Flag we've run out of review questions if the active question results in an empty string
+        if ($_SESSION['activeQuestion'] == '') {
+            $reviewDone = 'true';
+        }
+
+        $goodAnswer = self::gotRight($answerWord, $correctAnswer);
+        $feedback = self::giveFeedback($goodAnswer, $seconds, $feedbackQuestion, $correctAnswer);
+
+        // Send back response
+
+        $response = array(
+            "feedback"=>$feedback,
+            "nextQuestion"=>'\'' . $_SESSION['activeQuestion'] . '\'',
+            "reviewLeft"=>$reviewLeft,
+            "reviewDone"=>$reviewDone);
 
         header("Content-Type: application/json");
         echo json_encode($response);
