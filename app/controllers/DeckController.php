@@ -40,13 +40,13 @@ class DeckController {
     function giveFeedback($gotRight, $seconds, $feedbackQuestion, $correctAnswer){
         if($gotRight){
             if ($seconds > 6) {
-                return 'Fantastic! you had ' . $seconds . ' more seconds!';
+                return 'Fantastic! you had ' . $seconds . ' seconds left!';
             } elseif ($seconds > 3){
-                return 'Great job! you had ' . $seconds . ' more seconds!';
+                return 'Great job! you had ' . $seconds . ' seconds left!';
             } elseif ($seconds > 1){
-                return 'Well done! you had ' . $seconds . ' more seconds!';
+                return 'Well done! you had ' . $seconds . ' seconds left!';
             } elseif ($seconds == 1){
-                return 'Nice! you had ' . $seconds . ' more second!';
+                return 'Nice! you had ' . $seconds . ' seconds left!';
             } else {
                 return 'Good, you answered correctly!';
             }
@@ -54,9 +54,6 @@ class DeckController {
             return 'Wrong! \'' . $feedbackQuestion . '\' means \'' . $correctAnswer . '\'';
         }
     }
-
-
-
 
 
     function processCard() {
@@ -77,6 +74,14 @@ class DeckController {
         $newLeft = DeckModel::numNew($deckXML);
         $correctAnswer = DeckModel::getField($deckXML, $activeCard, 'answer');
 
+        // update eFactor
+        $grade = DeckModel::speedGrade($seconds);
+
+        //broken code
+        DeckModel::newE($deckXML,$activeCard, $grade);
+
+        // Update due date
+
         // Set the next card to test
         $_SESSION['activeCard'] = DeckModel::getNewCard($deckXML);
         $_SESSION['activeQuestion'] = DeckModel::getField($deckXML, $_SESSION['activeCard'], 'question');
@@ -84,19 +89,15 @@ class DeckController {
         $goodAnswer = self::gotRight($answerWord, $correctAnswer);
         $feedback = self::giveFeedback($goodAnswer, $seconds, $feedbackQuestion, $correctAnswer);
 
-        // Grade response
-
-        // Update due date and eFactor
-
         // Send back response
-        $response = array("feedback"=>$feedback,"nextQuestion"=>'\'' . $_SESSION['activeQuestion']
-            . '\'',"newLeft"=>$newLeft);
+
+        $response = array(
+        "feedback"=>$feedback,
+        "nextQuestion"=>'\'' . $_SESSION['activeQuestion'] . '\'',
+        "newLeft"=>$newLeft);
+
         header("Content-Type: application/json");
         echo json_encode($response);
-
-
-
-
     }
 
 }

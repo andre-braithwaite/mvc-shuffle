@@ -9,17 +9,17 @@ $username = $_SESSION['username'];
 $activeDeck = $_SESSION['activeDeck'];
 $deckXML = DeckModel::deckFolder() . $username . '/' . $activeDeck;
 
-// Check how many new cards are available
-$numNew = DeckModel::numNew($deckXML);
 
-$startMessage = $numNew . ' NEW CARDS REMAINING';
 
-// Choose the first card to test
-$_SESSION['activeCard'] = DeckModel::getNewCard($deckXML);
+// Set how many new cards to test
+$numNew = DeckModel::newToTest($deckXML);
 
-// Get the first question
-$_SESSION['activeQuestion'] = DeckModel::getField($deckXML, $_SESSION['activeCard'], 'question')
-
+// Start testing
+if($numNew > 0) {
+    $startMessage = $numNew . ' NEW CARDS REMAINING';
+    $_SESSION['activeCard'] = DeckModel::getNewCard($deckXML);
+    $_SESSION['activeQuestion'] = DeckModel::getField($deckXML, $_SESSION['activeCard'], 'question');
+}
 
 ?>
 
@@ -64,12 +64,14 @@ $_SESSION['activeQuestion'] = DeckModel::getField($deckXML, $_SESSION['activeCar
 
                 submit_button.click(function() {
 
+
                     var resultArea = document.getElementById("result");
                     var questionArea = document.getElementById("activeQ");
                     var remainingArea = document.getElementById("cardsLeft");
 
                     var answerWord = document.getElementById("answerWord").value;
                     var seconds = document.getElementById("seconds").value;
+                    //alert('did u click?');
 
                     $.ajax({
 
@@ -79,10 +81,15 @@ $_SESSION['activeQuestion'] = DeckModel::getField($deckXML, $_SESSION['activeCar
                         dataType: "JSON",
 
                         success: function(response) {
+                            alert('response received!');
                             resultArea.value = response.feedback;
                             questionArea.value = response.nextQuestion;
 
-                            remainingArea.value = response.newLeft + ' NEW CARDS REMAINING';
+                            if(response.newLeft != 1) {
+                                remainingArea.value = response.newLeft + ' NEW CARDS REMAINING';
+                            } else {
+                                remainingArea.value = response.newLeft + ' NEW CARD REMAINING';
+                            }
 
                             //Reset countdown and input box for the new question
                             secs = 10;
