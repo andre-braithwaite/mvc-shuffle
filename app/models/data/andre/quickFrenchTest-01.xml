@@ -6,7 +6,8 @@
     <answer>him</answer>
     <new>false</new>
     <eFactor>2.508</eFactor>
-    <due>none</due>
+    <due>2017-09-05</due>
+    <repNum>2</repNum>
   </card>
   <card>
     <rank>0002</rank>
@@ -14,23 +15,26 @@
     <answer>of</answer>
     <new>false</new>
     <eFactor>2.272</eFactor>
-    <due>none</due>
+    <due>2017-09-05</due>
+    <repNum>2</repNum>
   </card>
   <card>
     <rank>0003</rank>
     <question>un</question>
     <answer>a</answer>
     <new>false</new>
-    <eFactor>2.5</eFactor>
-    <due>none</due>
+    <eFactor>2.41</eFactor>
+    <due>2017-09-05</due>
+    <repNum>2</repNum>
   </card>
   <card>
     <rank>4991</rank>
     <question>provisoirement</question>
     <answer>temporarily</answer>
-    <new>true</new>
+    <new>false</new>
     <eFactor>2.5</eFactor>
     <due>none</due>
+    <repNum>1</repNum>
   </card>
   <card>
     <rank>4992</rank>
@@ -39,6 +43,7 @@
     <new>true</new>
     <eFactor>2.5</eFactor>
     <due>none</due>
+    <repNum>1</repNum>
   </card>
   <card>
     <rank>4993</rank>
@@ -47,5 +52,6 @@
     <new>true</new>
     <eFactor>2.5</eFactor>
     <due>none</due>
+    <repNum>1</repNum>
   </card>
 </deck>

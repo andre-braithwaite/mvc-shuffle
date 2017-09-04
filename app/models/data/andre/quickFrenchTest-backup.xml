@@ -7,6 +7,7 @@
     <new>true</new>
     <eFactor>2.5</eFactor>
     <due>none</due>
+    <repNum>1</repNum>
   </card>
   <card>
     <rank>0002</rank>
@@ -15,6 +16,7 @@
     <new>true</new>
     <eFactor>2.5</eFactor>
     <due>none</due>
+    <repNum>1</repNum>
   </card>
   <card>
     <rank>0003</rank>
@@ -23,6 +25,7 @@
     <new>true</new>
     <eFactor>2.5</eFactor>
     <due>none</due>
+    <repNum>1</repNum>
   </card>
   <card>
     <rank>4991</rank>
@@ -31,6 +34,7 @@
     <new>true</new>
     <eFactor>2.5</eFactor>
     <due>none</due>
+    <repNum>1</repNum>
   </card>
   <card>
     <rank>4992</rank>
@@ -39,6 +43,7 @@
     <new>true</new>
     <eFactor>2.5</eFactor>
     <due>none</due>
+    <repNum>1</repNum>
   </card>
   <card>
     <rank>4993</rank>
@@ -47,5 +52,6 @@
     <new>true</new>
     <eFactor>2.5</eFactor>
     <due>none</due>
+    <repNum>1</repNum>
   </card>
 </deck>

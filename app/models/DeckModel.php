@@ -124,4 +124,53 @@ class DeckModel
     }
 
 
+    function getTodaysDate () {
+        return date('Y-m-d');
+    }
+
+
+    // Returns date n days after today
+    function addDays ($days) {
+        return date('Y-m-d', strtotime("+" . $days . " days"));
+    }
+
+    static function newDate($deck, $rank) {
+
+        // Set the timezone
+        date_default_timezone_set('Europe/London');
+        $repNum = self::getField($deck, $rank, 'repNum');
+        $eFactor = self::getField($deck, $rank, 'eFactor');
+
+        // Calculate the interval
+        if ($repNum == 1) {
+            $interval = 1;
+        } elseif ($repNum == 2) {
+            $interval = 2;
+        } else {
+            $interval = ($repNum - 1) * $eFactor;
+        }
+
+        // Add interval to current date
+        $newDate = self::addDays($interval);
+
+        $xml = new SimpleXMLElement($deck, 0, true);
+
+        // Update due date
+        foreach ($xml->children() as $card) {
+            if ($card->rank == $rank) {
+                $card->due = $newDate;
+                self::saveXml($xml, $deck);
+            }
+        }
+
+        // Update the repetition number
+        foreach ($xml->children() as $card) {
+            if ($card->rank == $rank) {
+                $card->repNum = $repNum + 1;
+                self::saveXml($xml, $deck);
+            }
+        }
+}
+
+
 }

@@ -81,7 +81,6 @@ if($numNew > 0) {
                         dataType: "JSON",
 
                         success: function(response) {
-                            alert('response received!');
                             resultArea.value = response.feedback;
                             questionArea.value = response.nextQuestion;
 

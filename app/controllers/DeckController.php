@@ -76,11 +76,10 @@ class DeckController {
 
         // update eFactor
         $grade = DeckModel::speedGrade($seconds);
-
-        //broken code
         DeckModel::newE($deckXML,$activeCard, $grade);
 
         // Update due date
+        DeckModel::newDate($deckXML, $activeCard);
 
         // Set the next card to test
         $_SESSION['activeCard'] = DeckModel::getNewCard($deckXML);
