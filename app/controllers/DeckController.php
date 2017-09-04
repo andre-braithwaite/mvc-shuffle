@@ -27,6 +27,34 @@ class DeckController {
     }
 
 
+    // Card processing functions
+
+    function gotRight($answerGiven, $correctAnswer) {
+        if ($answerGiven == $correctAnswer){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function giveFeedback($gotRight, $seconds, $feedbackQuestion, $correctAnswer){
+        if($gotRight){
+            if ($seconds > 6) {
+                return 'Fantastic! you had ' . $seconds . ' seconds remaining!';
+            } elseif ($seconds > 3){
+                return 'Great job! you had ' . $seconds . ' seconds remaining!';
+            } elseif ($seconds > 1){
+                return 'Well done! you had ' . $seconds . ' seconds remaining!';
+            } elseif ($seconds == 1){
+                return 'Nice! you had ' . $seconds . ' second remaining!';
+            } else {
+                return 'Good, you answered correctly!';
+            }
+        } else {
+            return 'Wrong! \'' . $feedbackQuestion . '\' means \'' . $correctAnswer . '\'';
+        }
+    }
+
     function processCard() {
 
         // Get input variables
@@ -48,25 +76,14 @@ class DeckController {
         $_SESSION['activeCard'] = '0002';
         $_SESSION['activeQuestion'] = DeckModel::getField($deckXML, $_SESSION['activeCard'], 'question');
 
+        $goodAnswer = self::gotRight($answerWord, $correctAnswer);
+        $feedback = self::giveFeedback($goodAnswer, $seconds, $feedbackQuestion, $correctAnswer);
 
-        // Check and grade response
-        if ($answerWord == $correctAnswer) {
-            if ($seconds > 6) {
-                $feedback = 'Fantastic! you had ' . $seconds . ' seconds remaining!';
-            } elseif ($seconds > 3){
-                $feedback = 'Great job! you had ' . $seconds . ' seconds remaining!';
+        // Grade response
 
-            } elseif ($seconds > 1){
-                $feedback = 'Well done! you had ' . $seconds . ' seconds remaining!';
+        // Update due date and eFactor
 
-            } elseif ($seconds == 1){
-                $feedback = 'Nice! you had ' . $seconds . ' second remaining!';
-            } else {
-                $feedback = 'Good, you answered correctly!';
-            }
-        } else {
-            $feedback = 'Wrong! \'' . $feedbackQuestion . '\' means \'' . $correctAnswer . '\'';
-        }
+        // Send response
 
         $response = array("feedback"=>$feedback,"nextQuestion"=>'\'' . $_SESSION['activeQuestion'] . '\'');
         header("Content-Type: application/json");
