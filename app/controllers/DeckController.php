@@ -49,7 +49,7 @@ class DeckController {
             } elseif ($seconds > 1){
                 return 'Well done! you had ' . $seconds . ' seconds left!';
             } elseif ($seconds == 1){
-                return 'Nice! you had ' . $seconds . ' seconds left!';
+                return 'Nice! you had ' . $seconds . ' second left!';
             } else {
                 return 'Good, you answered correctly!';
             }

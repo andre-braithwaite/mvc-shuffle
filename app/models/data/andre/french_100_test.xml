@@ -112,52 +112,52 @@
     <rank>0013</rank>
     <question>il</question>
     <answer>he</answer>
-    <new>true</new>
-    <eFactor>2.5</eFactor>
-    <due>none</due>
-    <repNum>1</repNum>
+    <new>false</new>
+    <eFactor>2.508</eFactor>
+    <due>2017-09-05</due>
+    <repNum>2</repNum>
   </card>
   <card>
     <rank>0014</rank>
     <question>qui</question>
     <answer>who</answer>
-    <new>true</new>
-    <eFactor>2.5</eFactor>
-    <due>none</due>
-    <repNum>1</repNum>
+    <new>false</new>
+    <eFactor>2.41</eFactor>
+    <due>2017-09-05</due>
+    <repNum>2</repNum>
   </card>
   <card>
     <rank>0015</rank>
     <question>ne</question>
     <answer>not</answer>
-    <new>true</new>
-    <eFactor>2.5</eFactor>
-    <due>none</due>
-    <repNum>1</repNum>
+    <new>false</new>
+    <eFactor>2.272</eFactor>
+    <due>2017-09-05</due>
+    <repNum>2</repNum>
   </card>
   <card>
     <rank>0016</rank>
     <question>sur</question>
     <answer>on</answer>
-    <new>true</new>
-    <eFactor>2.5</eFactor>
-    <due>none</due>
-    <repNum>1</repNum>
+    <new>false</new>
+    <eFactor>2.272</eFactor>
+    <due>2017-09-05</due>
+    <repNum>2</repNum>
   </card>
   <card>
     <rank>0017</rank>
     <question>se</question>
     <answer>oneself</answer>
-    <new>true</new>
-    <eFactor>2.5</eFactor>
-    <due>none</due>
-    <repNum>1</repNum>
+    <new>false</new>
+    <eFactor>1.528</eFactor>
+    <due>2017-09-06</due>
+    <repNum>3</repNum>
   </card>
   <card>
     <rank>0018</rank>
     <question>pas</question>
     <answer>footstep</answer>
-    <new>true</new>
+    <new>false</new>
     <eFactor>2.5</eFactor>
     <due>none</due>
     <repNum>1</repNum>
@@ -166,52 +166,52 @@
     <rank>0019</rank>
     <question>plus</question>
     <answer>more</answer>
-    <new>true</new>
-    <eFactor>2.5</eFactor>
-    <due>none</due>
-    <repNum>1</repNum>
+    <new>false</new>
+    <eFactor>2.41</eFactor>
+    <due>2017-09-06</due>
+    <repNum>2</repNum>
   </card>
   <card>
     <rank>0020</rank>
     <question>pouvoir</question>
     <answer>can</answer>
-    <new>true</new>
-    <eFactor>2.5</eFactor>
-    <due>none</due>
-    <repNum>1</repNum>
+    <new>false</new>
+    <eFactor>2.272</eFactor>
+    <due>2017-09-06</due>
+    <repNum>2</repNum>
   </card>
   <card>
     <rank>0021</rank>
     <question>par</question>
     <answer>by</answer>
-    <new>true</new>
-    <eFactor>2.5</eFactor>
-    <due>none</due>
-    <repNum>1</repNum>
+    <new>false</new>
+    <eFactor>1.618</eFactor>
+    <due>2017-09-05</due>
+    <repNum>2</repNum>
   </card>
   <card>
     <rank>0022</rank>
     <question>je</question>
     <answer>I</answer>
-    <new>true</new>
-    <eFactor>2.5</eFactor>
-    <due>none</due>
-    <repNum>1</repNum>
+    <new>false</new>
+    <eFactor>1.618</eFactor>
+    <due>2017-09-05</due>
+    <repNum>2</repNum>
   </card>
   <card>
     <rank>0023</rank>
     <question>avec</question>
     <answer>with</answer>
-    <new>true</new>
-    <eFactor>2.5</eFactor>
-    <due>none</due>
-    <repNum>1</repNum>
+    <new>false</new>
+    <eFactor>1.618</eFactor>
+    <due>2017-09-05</due>
+    <repNum>2</repNum>
   </card>
   <card>
     <rank>0024</rank>
     <question>tout</question>
     <answer>all</answer>
-    <new>true</new>
+    <new>false</new>
     <eFactor>2.5</eFactor>
     <due>none</due>
     <repNum>1</repNum>
