@@ -9,6 +9,7 @@ class LoginController extends Controller {
 
     function processLogin() {
 
+        session_start();
         // Keep blue background when processing login
         echo '<body style=\'background-color:#3b5998;\'></body>';
 

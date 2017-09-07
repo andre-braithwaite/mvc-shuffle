@@ -66,10 +66,10 @@ if($_SESSION['newToTest'] > 0) {
 
             <script>
                 var submit_button = $('#testAjax');
-                var process = 'process-new';
 
                 submit_button.click(function() {
 
+                    var process = 'process-new';
 
                     var resultArea = document.getElementById("result");
                     var questionArea = document.getElementById("activeQ");
@@ -87,11 +87,11 @@ if($_SESSION['newToTest'] > 0) {
 
                         success: function(response) {
 
-
+                                alert(response.reviewDone);
 
                             if (response.newDone){
 
-                                if (response.reviewDone == 'true'){
+                                if (response.reviewLeft == '0'){
                                     window.location='finished-test';
                                 }
 

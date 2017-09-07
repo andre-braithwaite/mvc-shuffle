@@ -23,3 +23,10 @@ Main
 Tools
     Delete User
     from xml and user folder in data
+
+Java
+    take command line argument and use for output filename
+
+
+double check login session variable is being set correctly
+

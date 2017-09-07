@@ -106,9 +106,9 @@ class DeckController {
 
         // Flag we've run out of new questions if the active question results in an empty string
         if (($_SESSION['activeQuestion'] == '') or ($_SESSION['newToTest'] <= 0)) {
-           $newDone = 'true';
-           $_SESSION['activeCard'] = DeckModel::getReviewCard($deckXML);
-           $_SESSION['activeQuestion'] = DeckModel::getField($deckXML, $_SESSION['activeCard'], 'question');
+            $newDone = 'true';
+            $_SESSION['activeCard'] = DeckModel::getReviewCard($deckXML);
+            $_SESSION['activeQuestion'] = DeckModel::getField($deckXML, $_SESSION['activeCard'], 'question');
 
         }
         $reviewLeft = DeckModel::numReview($deckXML);
@@ -120,11 +120,11 @@ class DeckController {
         // Send back response
 
         $response = array(
-        "feedback"=>$feedback,
-        "nextQuestion"=>'\'' . $_SESSION['activeQuestion'] . '\'',
-        "newLeft"=>$newLeft,
-        "newDone"=>$newDone,
-        "reviewLeft"=>$reviewLeft);
+            "feedback"=>$feedback,
+            "nextQuestion"=>'\'' . $_SESSION['activeQuestion'] . '\'',
+            "newLeft"=>$newLeft,
+            "newDone"=>$newDone,
+            "reviewLeft"=>$reviewLeft);
 
         header("Content-Type: application/json");
         echo json_encode($response);
@@ -172,10 +172,6 @@ class DeckController {
         $_SESSION['activeCard'] = DeckModel::getReviewCard($deckXML);
         $_SESSION['activeQuestion'] = DeckModel::getField($deckXML, $_SESSION['activeCard'], 'question');
 
-        // Flag we've run out of review questions if the active question results in an empty string
-        if ($_SESSION['activeQuestion'] == '') {
-            $reviewDone = 'true';
-        }
 
         $goodAnswer = self::gotRight($answerWord, $correctAnswer);
         $feedback = self::giveFeedback($goodAnswer, $seconds, $feedbackQuestion, $correctAnswer);
@@ -186,7 +182,6 @@ class DeckController {
             "feedback"=>$feedback,
             "nextQuestion"=>'\'' . $_SESSION['activeQuestion'] . '\'',
             "reviewLeft"=>$reviewLeft,
-            "reviewDone"=>$reviewDone,
             "newDone"=>'true');
 
         header("Content-Type: application/json");
