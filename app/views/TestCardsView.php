@@ -87,7 +87,7 @@ if($_SESSION['newToTest'] > 0) {
 
                         success: function(response) {
 
-                                alert(response.reviewDone);
+                                //alert(response.reviewDone);
 
                             if (response.newDone){
 

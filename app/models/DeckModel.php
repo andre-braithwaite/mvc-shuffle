@@ -64,7 +64,7 @@ class DeckModel
         $totalCards = 0;
 
         foreach ($xml->children() as $card) {
-            if ($card->due == self::getTodaysDate()) {
+            if ($card->due <= self::getTodaysDate()) {
                 $totalCards += 1;
             }
         }
@@ -111,13 +111,12 @@ class DeckModel
     }
 
     // Returns rank of first card marked for review today
-    static function getReviewCard($xmlName)
-    {
+    static function getReviewCard($xmlName) {
 
         $xml = new SimpleXMLElement($xmlName, 0, true);
 
         foreach ($xml->children() as $card) {
-            if ($card->due == self::getTodaysDate()) {
+            if ($card->due <= self::getTodaysDate()) {
                 return (string)$card->rank;
             }
         }
