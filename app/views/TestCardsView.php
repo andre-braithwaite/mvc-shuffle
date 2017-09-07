@@ -58,7 +58,7 @@ if($_SESSION['newToTest'] > 0) {
                 <input placeholder="answer here" type="text"  id ="answerWord" style="text-align:center"/>
 
                 <div class="divider"></div>
-                <button id="testAjax" type="submit">click to check answer</button>
+                <button id="testAjax" type="submit">press "enter" or click here<br/>to check your answer</button>
                 <input type = "text"  id="seconds" background="#4CAF50" style="text-align:center;" name="secondsRemaining" >
 
                 <input type = "text"  id="result">
@@ -66,6 +66,14 @@ if($_SESSION['newToTest'] > 0) {
 
             <script>
                 var submit_button = $('#testAjax');
+
+
+                $('#answerWord').keyup(function(event){
+                    if(event.keyCode==13){
+                        $('#testAjax').trigger('click');
+                    }
+                });
+
 
                 submit_button.click(function() {
 
