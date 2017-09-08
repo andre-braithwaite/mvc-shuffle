@@ -27,6 +27,4 @@ Tools
 Java
     take command line argument and use for output filename
 
-
-double check login session variable is being set correctly
-
+Put appropriate page headings in html

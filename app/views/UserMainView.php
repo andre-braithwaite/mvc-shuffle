@@ -21,6 +21,8 @@
 
     <div class="status-info">
 
+        <input type = "button" value="A 'DECK' IS A COLLECTION OF QUESTIONS" style="background:#006db9; color: white">
+
 
         <button type="button" onclick="window.location='show-decks';">
         choose a deck</button>
@@ -28,7 +30,7 @@
         <button type="button" onclick="window.location='../deck-controller/remove-decks';">
             remove a deck</button>
 
-        <button type="button" onclick="window.location='../../../views/tests/user-logins/user-logins.html';">
+        <button type="button" onclick="window.location='../tests/user-logins/user-logins.html';">
         set password</button>
 
         <button style="background:darkred" type="button"
