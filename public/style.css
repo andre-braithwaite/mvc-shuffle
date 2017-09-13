@@ -23,7 +23,7 @@
     background: #FFFFFF;
     max-width: 360px;
     margin: 0 auto 100px;
-    padding: 15px;
+    padding: 1px;
     text-align: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
@@ -74,7 +74,7 @@
     background: #FFFFFF;
     max-width: 360px;
     margin: 0 auto 100px;
-    padding: 15px;
+    padding: 1px;
     text-align: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
@@ -119,6 +119,22 @@
     font-size: 12px;
 }
 
+.logout {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #4CAF50;
+    width: 10%;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    border-style: solid;
+    border-width: 1px;
+
+
+}
 
 body {
 

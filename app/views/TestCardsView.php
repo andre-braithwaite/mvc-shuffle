@@ -14,16 +14,31 @@ $activeDeck = $_SESSION['activeDeck'];
 $deckXML = DeckModel::deckFolder() . $username . '/' . $activeDeck;
 
 // Set how many new cards to test
-$_SESSION['newToTest'] = DeckModel::newToTest($deckXML);;
-
+$_SESSION['newToTest'] = DeckModel::newToTest($deckXML);
+$reviewToTest = DeckModel::numReview($deckXML);
 
 // Start testing
 if($_SESSION['newToTest'] > 0) {
-    $startMessage = $_SESSION['newToTest'] . ' NEW CARDS REMAINING';
+    if ($reviewToTest > 1) {
+        $startMessage = $_SESSION['newToTest'] . ' NEW CARDS REMAINING';
+    } else {
+        $startMessage = $_SESSION['newToTest'] . ' NEW CARD REMAINING';
+    }
+
+
+
     $_SESSION['activeCard'] = DeckModel::getNewCard($deckXML);
     $_SESSION['activeQuestion'] = DeckModel::getField($deckXML, $_SESSION['activeCard'], 'question');
+} elseif ($reviewToTest <= 0) {
+    echo "<script>window.location='finished-test';</script>";
 } else {
-    echo "<script>window.location='review-cards';</script>";
+    if ($reviewToTest > 1) {
+        $startMessage = DeckModel::numReview($deckXML) . ' CARDS LEFT TO REVIEW';
+    } else {
+        $startMessage = DeckModel::numReview($deckXML) . ' CARD LEFT TO REVIEW';
+    }
+    $_SESSION['activeCard'] = DeckModel::getReviewCard($deckXML);
+    $_SESSION['activeQuestion'] = DeckModel::getField($deckXML, $_SESSION['activeCard'], 'question');
 }
 
 ?>
@@ -42,6 +57,15 @@ if($_SESSION['newToTest'] > 0) {
 </head>
 
 <body>
+
+<!-- Log Out Button-->
+<input type="button" style='float: right; background:darkred'
+       value ='LOG OUT'
+       class ='logout'
+       onmouseout="this.style.backgroundColor='darkred'";
+       onmouseover="this.style.backgroundColor='firebrick'"
+       onclick="window.location='../login-controller/go-home'";/><br>
+
     <div class="global-style">
             <h1 class="page-heading"><?php echo $username . ' is logged in.';?></h1>
 

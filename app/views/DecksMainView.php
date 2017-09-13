@@ -20,6 +20,14 @@ $activeDeck = $_SESSION['activeDeck'];
 
 <body>
 
+<!-- Log Out Button-->
+<input type="button" style='float: right; background:darkred'
+       value ='LOG OUT'
+       class ='logout'
+       onmouseout="this.style.backgroundColor='darkred'";
+       onmouseover="this.style.backgroundColor='firebrick'"
+       onclick="window.location='../login-controller/go-home'";/><br>
+
 <div class="global-style">
 
 

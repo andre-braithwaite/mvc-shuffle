@@ -17,6 +17,14 @@ $activeDeck = $_SESSION['activeDeck'];
 
 <body>
 
+<!-- Log Out Button-->
+<input type="button" style='float: right; background:darkred'
+       value ='LOG OUT'
+       class ='logout'
+       onmouseout="this.style.backgroundColor='darkred'";
+       onmouseover="this.style.backgroundColor='firebrick'"
+       onclick="window.location='../login-controller/go-home'";/><br>
+
 <div class="global-style">
 
 
@@ -28,12 +36,23 @@ $activeDeck = $_SESSION['activeDeck'];
         <input type = "button" value="<?php echo $activeDeck;?>" style="background:#006db9; color: white">
 
 
+        <button type="button" onclick="window.location='test-cards';">
+            start testing</button>
+
         <!-- Draw a table-->
         <button type="button" onclick="window.location='view-deck';">
             view questions</button>
 
-        <button type="button" onclick="window.location='test-cards';">
-            start testing</button>
+
+
+        <button
+
+                style="background:darkred"
+                onmouseout="this.style.backgroundColor='darkred'";
+                onmouseover="this.style.backgroundColor='firebrick'"
+                onclick="window.location='../deck-controller/remove-decks'";
+
+                >remove this deck</button>
 
 
     </div>

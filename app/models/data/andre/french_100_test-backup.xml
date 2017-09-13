@@ -4,7 +4,7 @@
     <rank>0001</rank>
     <question>le</question>
     <answer>him</answer>
-    <new>true</new>
+    <new>false</new>
     <eFactor>2.5</eFactor>
     <due>none</due>
     <repNum>1</repNum>

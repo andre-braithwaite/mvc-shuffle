@@ -27,14 +27,16 @@
                     <input type="password" name="password" placeholder="password"/>
                     <div class="divider"></div>
 
-                    <button>login</button>
+                    <button name="login" value = "Attempt Login">login</button>
 
 
 
-                    <button>new user</button>
+                    <button name="newUser" value = "Create new user">new user</button>
 
 
-                    <button style="background:darkred" type="button"
+                    <button name = "tools"
+                            value = "Go to admin area"
+                            style="background:darkred"
                             onmouseout="this.style.backgroundColor='darkred'";
                             onmouseover="this.style.backgroundColor='firebrick'">tools</button>
 

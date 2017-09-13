@@ -13,7 +13,16 @@
 
     <body>
 
+    <!-- Log Out Button-->
+    <input type="button" style='float: right; background:darkred'
+           value ='LOG OUT'
+           class ='logout'
+           onmouseout="this.style.backgroundColor='darkred'";
+           onmouseover="this.style.backgroundColor='firebrick'"
+           onclick="window.location='../login-controller/go-home'";/><br>
+
     <div class="global-style">
+
 
 
     <h1 class="page-heading"><?php echo $username . ' is logged in.';?></h1>
@@ -21,22 +30,19 @@
 
     <div class="status-info">
 
-        <input type = "button" value="A 'DECK' IS A COLLECTION OF QUESTIONS" style="background:#006db9; color: white">
+        <input type = "button" value="A 'DECK' IS A COLLECTION OF QUESTIONS" style="background:#006db9; color: white";>
 
 
         <button type="button" onclick="window.location='show-decks';">
         choose a deck</button>
 
-        <button type="button" onclick="window.location='../deck-controller/remove-decks';">
-            remove a deck</button>
+        <button type="button" onclick="window.location='import-deck';">
+            import deck</button>
 
-        <button type="button" onclick="window.location='../tests/user-logins/user-logins.html';">
+        <button type="button" onclick="window.location='change-pass';">
         set password</button>
 
-        <button style="background:darkred" type="button"
-                onclick="window.location='../'";
-                onmouseout="this.style.backgroundColor='darkred'";
-                onmouseover="this.style.backgroundColor='firebrick'">log out</button>
+
 
     </div>
 
