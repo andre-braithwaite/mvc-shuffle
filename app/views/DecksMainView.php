@@ -31,7 +31,7 @@ $activeDeck = $_SESSION['activeDeck'];
 <div class="global-style">
 
 
-    <h1 class="page-heading"><?php echo $username . ' is logged in.';?></h1>
+    <h1  class="page-heading" ><?php echo $username . ' is logged in.';?></h1>
     <div class="divider"></div>
 
     <div class="status-info">

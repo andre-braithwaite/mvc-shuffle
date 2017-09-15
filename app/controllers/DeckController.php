@@ -30,6 +30,14 @@ class DeckController {
         View::render('FinishedTestingView.php');
     }
 
+    function viewDeck() {
+        View::render('DeckView.php');
+    }
+
+    function resetDeck() {
+        View::render('ResetDeckView.php');
+    }
+
     // Card processing functions
 
     function gotRight($answerGiven, $correctAnswer) {

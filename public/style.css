@@ -1,5 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
+
+
 .page-heading{
     color: white;
     font-family: "Roboto", sans-serif;
@@ -73,7 +75,7 @@
     z-index: 1;
     background: #FFFFFF;
     max-width: 360px;
-    margin: 0 auto 100px;
+    margin: 0 auto 60px;
     padding: 1px;
     text-align: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
@@ -124,7 +126,7 @@
     text-transform: uppercase;
     outline: 0;
     background: #4CAF50;
-    width: 10%;
+    width: 12%;
     padding: 15px;
     color: #FFFFFF;
     font-size: 14px;

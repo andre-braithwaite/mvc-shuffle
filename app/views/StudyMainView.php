@@ -43,6 +43,9 @@ $activeDeck = $_SESSION['activeDeck'];
         <button type="button" onclick="window.location='view-deck';">
             view questions</button>
 
+        <button type="button" onclick="window.location='reset-deck';">
+            reset deck</button>
+
 
 
         <button

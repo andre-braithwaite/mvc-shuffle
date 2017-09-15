@@ -229,5 +229,19 @@ class DeckModel
         }
     }
 
+    static function resetStats($deck) {
+
+        $xml = new SimpleXMLElement($deck, 0, true);
+
+        // Set stats to default
+        foreach ($xml->children() as $card) {
+            $card->new = 'true';
+            $card->eFactor = '2.5';
+            $card->due = 'none';
+            $card->repNum = '1';
+        }
+        self::saveXml($xml, $deck);
+    }
+
 
 }
