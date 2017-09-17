@@ -41,10 +41,11 @@ class UserController extends Controller {
 
         $deleteMe = $_SESSION['deleteMe'];
 
+        // Delete from xml
+
         $file = '../app/models/data/users.xml';
         $xml = LoginModel::xmlElement();
 
-        // Delete from xml
         foreach ($xml->children() as $user) {
             if ($user->username == $deleteMe) {
                 $dom=dom_import_simplexml($user);
@@ -53,11 +54,34 @@ class UserController extends Controller {
             }
         }
 
+
         // Delete User Directory
-        unlink('../app/models/data/' . $deleteMe . '/') or die("Couldn't delete file");
+        function DelDir($target) {
+            if(is_dir($target)) {
+                $files = glob( $target . '*', GLOB_MARK );
+                foreach( $files as $file )
+                {
+                    DelDir( $file );
+                }
+
+                @rmdir( $target );
+                echo '<body style=\'background-color:#3b5998;\'></body>';
+
+            } elseif(is_file($target)) {
+                unlink( $target );
+            }
+        }
+
+        $deleteThis = '../app/models/data/' . $deleteMe;
+        DelDir($deleteThis);
 
 
-        View::render('DeleteUserView.php');
+
+
+
+        // Keep blue background when processing login
+        echo '<body style=\'background-color:#3b5998;\'></body>';
+        echo "<script>window.location='../login-controller/delete-user'</script>";
     }
 
 }

@@ -22,7 +22,7 @@
         <input type = "button" value="USER CREATED SUCCESSFULLY!" style="background:#006db9; color: white">
 
         <button type="button" onclick="window.location='../';">
-            main menu</button>
+            return to log in</button>
     </div>
 </body>
 </html>

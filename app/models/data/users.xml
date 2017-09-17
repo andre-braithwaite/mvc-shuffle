@@ -5,11 +5,7 @@
     <password>123</password>
   </user>
   <user>
-    <username>john</username>
-    <password>456</password>
-  </user>
-  <user>
-    <username>george</username>
+    <username>bilbo</username>
     <password>123</password>
   </user>
 </users>
