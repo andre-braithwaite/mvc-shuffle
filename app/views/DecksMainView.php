@@ -34,7 +34,20 @@ $activeDeck = $_SESSION['activeDeck'];
     <h1  class="page-heading" ><?php echo $username . ' is logged in.';?></h1>
     <div class="divider"></div>
 
+
     <div class="status-info">
+
+        <button type="button" onclick="window.location='../user-controller/main-menu';">
+            main menu</button>
+
+    </div>
+
+    <div class="status-info">
+
+
+
+
+
 
         <form action="../deck-controller/set-deck" method="get">
 

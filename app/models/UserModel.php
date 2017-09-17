@@ -32,4 +32,35 @@ class UserModel {
 
     }
 
+    static function addUser() {
+
+        session_start();
+
+        $username = $_REQUEST['username'];
+        $password = $_REQUEST['password'];
+
+        $file = '../app/models/data/users.xml';
+        $xml = LoginModel::xmlElement();
+
+        $user = $xml->addChild('user');
+        $user->addChild(username, $username);
+        $user->addChild(password, $password);
+        ;
+
+
+        // Add user to xml file
+        $dom = new DOMDocument('1.0');
+        $dom->preserveWhiteSpace = false;
+        $dom->formatOutput = true;
+        $dom->loadXML($xml->asXML());
+        $dom->save($file);
+
+        // Make User directory
+        mkdir('../app/models/data/' . $username, 0700);
+
+
+        View::render('NewUserSuccessView.php');
+
+    }
+
 }

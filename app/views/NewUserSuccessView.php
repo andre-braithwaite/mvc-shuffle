@@ -1,12 +1,3 @@
-<?php
-session_start();
-$username = $_SESSION['username'];
-$activeDeck = $_SESSION['activeDeck'];
-$deckXML = DeckModel::deckFolder() . $username . '/' . $activeDeck;
-DeckModel::resetStats($deckXML);
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,13 +16,12 @@ DeckModel::resetStats($deckXML);
 
 <div class="global-style">
 
-    <h1  class="page-heading" ><?php echo $username . ' is logged in.';?></h1>
     <div class="divider"></div>
 
     <div class="status-info">
-        <input type = "button" value="FINISHED TESTING!" style="background:#006db9; color: white">
+        <input type = "button" value="USER CREATED SUCCESSFULLY!" style="background:#006db9; color: white">
 
-        <button type="button" onclick="window.location='../user-controller/main-menu';">
+        <button type="button" onclick="window.location='../';">
             main menu</button>
     </div>
 </body>

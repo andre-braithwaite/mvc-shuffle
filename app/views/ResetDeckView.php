@@ -31,8 +31,8 @@ DeckModel::resetStats($deckXML);
     <div class="status-info">
         <input type = "button" value="DECK RESET SUCCESSFULLY!" style="background:#006db9; color: white">
 
-        <button type="button" onclick="window.location='../user-controller/main-menu';">
-            main menu</button>
+        <button type="button" onclick="window.location='../user-controller/show-decks';">
+            return to decks</button>
     </div>
 </body>
 </html>

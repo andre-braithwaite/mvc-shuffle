@@ -18,7 +18,7 @@
     <div class="divider"></div>
 
     <div class="form">
-        <form action="add-user" method="get">
+        <form action="../user-model/add-user" method="get">
 
             <input type="text" name="username" placeholder="username"/>
             <div class="divider"></div>
@@ -27,7 +27,7 @@
             <input type="password" name="password" placeholder="password"/>
             <div class="divider"></div>
 
-            <button name="login" value = "Attempt Login">Create User</button>
+            <button type = "submit">Create User</button>
 
 
         </form>

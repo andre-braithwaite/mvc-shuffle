@@ -252,5 +252,84 @@ class DeckModel
         echo "<script>window.location='../user-controller/show-decks';</script>";
     }
 
+    static function uploadingXml(){
+        // Keep blue background when processing login
+        echo '<body style=\'background-color:#3b5998;\'></body>';
+
+        session_start();
+        $username = $_SESSION['username'];
+        $targetLocation = DeckModel::deckFolder() . $username . '/';
+
+        $target_path = $targetLocation . basename( $_FILES['xml-file']['name']);
+
+        if(move_uploaded_file($_FILES['xml-file']['tmp_name'], $target_path)) {
+            //echo "The file ".  basename( $_FILES['xml-file']['name']).
+            //   " has been uploaded.";
+        } else {
+            echo "There was an error uploading the file!";
+        }
+        echo "<script>window.location='../user-controller/show-decks';</script>";
+
+
+    }
+
+    static function uploadingCsv(){
+        // Keep blue background when processing
+        echo '<body style=\'background-color:#3b5998;\'></body>';
+
+        session_start();
+        $username = $_SESSION['username'];
+        $targetLocation = DeckModel::deckFolder() . $username . '/';
+
+        $target_path = $targetLocation . basename( $_FILES['csv-file']['name']);
+
+        $inputFile = $_FILES['csv-file']['tmp_name'];
+
+        // Takes name from input file for XML output file
+        $nameWithoutExtension = substr($_FILES['csv-file']['name'], 0, -4);
+        $outputFilename   = $targetLocation . $nameWithoutExtension . '.xml';
+
+        $tmp = fopen($_FILES['csv-file']['tmp_name'], 'rt');
+
+        // Creates new empty xml document with deck tags only
+        $xml = new SimpleXMLElement('<?xml version="1.0" encoding="utf-8"?><deck></deck>');
+        $headers = array('rank', 'question', 'answer', 'new', 'eFactor', 'due', 'repNum');
+        $bom = pack("CCC", 0xef, 0xbb, 0xbf);
+
+        while ( ($line = fgets($tmp)) !== false) {
+
+            $card = $xml->addChild('card');
+
+            //Add csv data
+
+            //Remove BOM from start of string
+            if (0 == strncmp($line, $bom, 3)) {
+                $line = substr($line, 3);
+            }
+
+            //Remove newline from end of string
+            $line = str_replace(array("\n","\r"), '', $line) . ',true' . ',2.5' . ',none' . ',1';
+
+            //Separate data items
+            $data = explode(",", $line);
+
+            for ($i = 0; $i <7; $i++) {
+                $card->addChild($headers[$i], $data[$i]);
+            }
+        }
+
+        //Output formatted xml
+
+        $dom = new DOMDocument('1.0');
+        $dom->preserveWhiteSpace = false;
+        $dom->formatOutput = true;
+        $dom->loadXML($xml->asXML());
+        $dom->save($outputFilename);
+
+        echo "<script>window.location='../user-controller/show-decks';</script>";
+
+
+    }
+
 
 }

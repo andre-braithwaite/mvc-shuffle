@@ -14,4 +14,16 @@ class UserController extends Controller {
         View::render('StudentPassView.php');
     }
 
+    function importDeck() {
+        View::render('ImportDeckView.php');
+    }
+
+    function importXml() {
+        View::render('ImportingXmlView.php');
+    }
+
+    function importCsv() {
+        View::render('ImportingCsvView.php');
+    }
+
 }

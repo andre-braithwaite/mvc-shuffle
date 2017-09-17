@@ -1,10 +1,6 @@
 <?php
 session_start();
 $username = $_SESSION['username'];
-$activeDeck = $_SESSION['activeDeck'];
-$deckXML = DeckModel::deckFolder() . $username . '/' . $activeDeck;
-DeckModel::resetStats($deckXML);
-
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +10,9 @@ DeckModel::resetStats($deckXML);
     <title>Test User Logins</title>
     <link rel="stylesheet" type="text/css" href="../public/style.css">
 </head>
+
 <body>
+
 <!-- Log Out Button-->
 <input type="button" style='float: right; background:darkred'
        value ='LOG OUT'
@@ -25,14 +23,28 @@ DeckModel::resetStats($deckXML);
 
 <div class="global-style">
 
-    <h1  class="page-heading" ><?php echo $username . ' is logged in.';?></h1>
+
+
+    <h1 class="page-heading"><?php echo $username . ' is logged in.';?></h1>
     <div class="divider"></div>
 
     <div class="status-info">
-        <input type = "button" value="FINISHED TESTING!" style="background:#006db9; color: white">
 
-        <button type="button" onclick="window.location='../user-controller/main-menu';">
-            main menu</button>
+        <form enctype="multipart/form-data" action="../deck-model/uploading-csv" method="POST">
+
+        <input type = "button" value="UPLOAD AN CSV FILE" style="background:#006db9; color: white";>
+
+        <input name="csv-file" type="file" />
+
+        <button type="submit" value="Upload File">
+            UPLOAD FILE</button>
+        </form>
+
+
+
     </div>
+
+
+</div>
 </body>
 </html>
