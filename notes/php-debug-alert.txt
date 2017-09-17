@@ -1,4 +1,0 @@
-$message = 'some value';
-echo "<script type='text/javascript'>alert('got this far!');</script>";
-
-alert('Found Script!');

@@ -56,12 +56,12 @@ class UserController extends Controller {
 
 
         // Delete User Directory
-        function DelDir($target) {
+        function deleteUserDirectory($target) {
             if(is_dir($target)) {
                 $files = glob( $target . '*', GLOB_MARK );
                 foreach( $files as $file )
                 {
-                    DelDir( $file );
+                    deleteUserDirectory( $file );
                 }
 
                 @rmdir( $target );
@@ -73,7 +73,7 @@ class UserController extends Controller {
         }
 
         $deleteThis = '../app/models/data/' . $deleteMe;
-        DelDir($deleteThis);
+        deleteUserDirectory($deleteThis);
 
 
 
