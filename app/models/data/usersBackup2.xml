@@ -12,4 +12,8 @@
     <username>george</username>
     <password>123</password>
   </user>
+  <user>
+    <username>michael</username>
+    <password>123</password>
+  </user>
 </users>

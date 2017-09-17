@@ -8,14 +8,13 @@ class LoginController extends Controller {
 
 
     public function goAdmin() {
-        View::render('AdminLogin.php');
+        View::render('AdminPassView.php');
     }
 
 
     public function newUser() {
         View::render('CreateUserView.php');
     }
-
 
 
     function processLogin() {
@@ -112,6 +111,35 @@ class LoginController extends Controller {
             echo("<script>window.location = '../user-controller/main-menu';</script>");
             die;
         }
+    }
+
+    function testPass() {
+        $input = $_REQUEST['password'];
+        $adminPassFile = '../app/models/data/admin_pass.xml';
+
+
+
+        $xml = new SimpleXMLElement($adminPassFile, 0, true);
+
+        foreach ($xml->children() as $value) {
+            if ($input == $value) {
+                View::render('AdminAreaView.php');
+            } else {
+                View::render('AdminPassView.php');
+            }
+        }
+    }
+
+    function changeAdmin() {
+        View::render('AdminChangeView.php');
+    }
+
+    public function deleteUser() {
+        View::render('DeleteUserView.php');
+    }
+
+    public function confirmDelete() {
+        View::render('DeletingUserView.php');
     }
 
 }
