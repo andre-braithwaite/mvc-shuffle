@@ -243,5 +243,14 @@ class DeckModel
         self::saveXml($xml, $deck);
     }
 
+    static function removeDeck($deck){
+        // Keep blue background when processing login
+        echo '<body style=\'background-color:#3b5998;\'></body>';
+
+        session_start();
+        unlink($deck) or die("Couldn't delete file");
+        echo "<script>window.location='../user-controller/show-decks';</script>";
+    }
+
 
 }

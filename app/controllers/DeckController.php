@@ -18,7 +18,16 @@ class DeckController {
     }
 
     function removeDecks() {
-        echo 'removing decks...';
+        session_start();
+        $username = $_SESSION['username'];
+        $activeDeck = $_SESSION['activeDeck'];
+
+
+        $deleteMe= DeckModel::deckFolder() . $username . '/' . $activeDeck;
+
+        DeckModel::removeDeck($deleteMe);
+
+
     }
 
 

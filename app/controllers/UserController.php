@@ -10,6 +10,8 @@ class UserController extends Controller {
         View::render('DecksMainView.php');
     }
 
-
+    function changePass() {
+        View::render('StudentPassView.php');
+    }
 
 }
