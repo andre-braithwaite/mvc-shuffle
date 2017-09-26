@@ -49,16 +49,16 @@
     <rank>0006</rank>
     <question>et</question>
     <answer>and</answer>
-    <new>true</new>
-    <eFactor>2.5</eFactor>
-    <due>none</due>
-    <repNum>1</repNum>
+    <new>false</new>
+    <eFactor>2.41</eFactor>
+    <due>2017-09-27</due>
+    <repNum>2</repNum>
   </card>
   <card>
     <rank>0007</rank>
     <question>en</question>
     <answer>in</answer>
-    <new>true</new>
+    <new>false</new>
     <eFactor>2.5</eFactor>
     <due>none</due>
     <repNum>1</repNum>
