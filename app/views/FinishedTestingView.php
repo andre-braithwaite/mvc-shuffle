@@ -3,7 +3,6 @@ session_start();
 $username = $_SESSION['username'];
 $activeDeck = $_SESSION['activeDeck'];
 $deckXML = DeckModel::deckFolder() . $username . '/' . $activeDeck;
-DeckModel::resetStats($deckXML);
 
 ?>
 

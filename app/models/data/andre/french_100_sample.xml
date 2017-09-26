@@ -4,46 +4,46 @@
     <rank>0001</rank>
     <question>le</question>
     <answer>him</answer>
-    <new>true</new>
-    <eFactor>2.5</eFactor>
-    <due>none</due>
-    <repNum>1</repNum>
+    <new>false</new>
+    <eFactor>2.508</eFactor>
+    <due>2017-09-27</due>
+    <repNum>2</repNum>
   </card>
   <card>
     <rank>0002</rank>
     <question>de</question>
     <answer>of</answer>
-    <new>true</new>
-    <eFactor>2.5</eFactor>
-    <due>none</due>
-    <repNum>1</repNum>
+    <new>false</new>
+    <eFactor>2.508</eFactor>
+    <due>2017-09-27</due>
+    <repNum>2</repNum>
   </card>
   <card>
     <rank>0003</rank>
     <question>un</question>
     <answer>a</answer>
-    <new>true</new>
-    <eFactor>2.5</eFactor>
-    <due>none</due>
-    <repNum>1</repNum>
+    <new>false</new>
+    <eFactor>2.508</eFactor>
+    <due>2017-09-27</due>
+    <repNum>2</repNum>
   </card>
   <card>
     <rank>0004</rank>
     <question>à</question>
     <answer>to</answer>
-    <new>true</new>
-    <eFactor>2.5</eFactor>
-    <due>none</due>
-    <repNum>1</repNum>
+    <new>false</new>
+    <eFactor>2.41</eFactor>
+    <due>2017-09-27</due>
+    <repNum>2</repNum>
   </card>
   <card>
     <rank>0005</rank>
     <question>être</question>
     <answer>being</answer>
-    <new>true</new>
-    <eFactor>2.5</eFactor>
-    <due>none</due>
-    <repNum>1</repNum>
+    <new>false</new>
+    <eFactor>1.39</eFactor>
+    <due>2017-09-28</due>
+    <repNum>3</repNum>
   </card>
   <card>
     <rank>0006</rank>

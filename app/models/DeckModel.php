@@ -100,12 +100,15 @@ class DeckModel
 
         $xml = new SimpleXMLElement($xmlName, 0, true);
 
-        foreach ($xml->children() as $card) {
-            if ($card->new == "true") {
-                $card->new = "false";
-                // save changing card to false
-                self::saveXml($xml, $xmlName);
-                return (string)$card->rank;
+        if ($_SESSION['newToTest'] > 0) {
+
+            foreach ($xml->children() as $card) {
+                if ($card->new == "true") {
+                    $card->new = "false";
+                    // save changing card to false
+                    self::saveXml($xml, $xmlName);
+                    return (string)$card->rank;
+                }
             }
         }
     }
