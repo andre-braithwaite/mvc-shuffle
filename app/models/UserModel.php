@@ -42,25 +42,29 @@ class UserModel {
         $file = '../app/models/data/users.xml';
         $xml = LoginModel::xmlElement();
 
-        $user = $xml->addChild('user');
-        $user->addChild(username, $username);
-        $user->addChild(password, $password);
-        ;
 
+        // Make new user if they don't already exist
+        if ((LoginModel::userFound($xml, $username)) == false) {
 
-        // Add user to xml file
-        $dom = new DOMDocument('1.0');
-        $dom->preserveWhiteSpace = false;
-        $dom->formatOutput = true;
-        $dom->loadXML($xml->asXML());
-        $dom->save($file);
+            $addedUser = $xml->addChild('user');
+            $addedUser->addChild(username, $username);
+            $addedUser->addChild(password, $password);
 
-        // Make User directory
-        mkdir('../app/models/data/' . $username, 0700);
+            // Make User directory
+            mkdir('../app/models/data/' . $username, 0700);
 
+            // Add user to xml file
+            $dom = new DOMDocument('1.0');
+            $dom->preserveWhiteSpace = false;
+            $dom->formatOutput = true;
+            $dom->loadXML($xml->asXML());
+            $dom->save($file);
 
-        View::render('NewUserSuccessView.php');
+            View::render('NewUserSuccessView.php');
 
+        } else {
+            echo("<script>window.location = '../login-controller/new-user';</script>");
+        }
     }
 
 
